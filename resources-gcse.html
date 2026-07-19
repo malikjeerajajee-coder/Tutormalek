@@ -31,6 +31,10 @@
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306b6d4'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='800' font-size='20' fill='white'%3EM%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://wa.me">
     <link rel="dns-prefetch" href="https://wa.me">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
 
     <style>
         :root {
@@ -62,16 +66,7 @@
             --max-w: 1200px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-fast: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-
-            --cat-pastpapers: #3b82f6;
-            --cat-notes: #8b5cf6;
-            --cat-flashcards: #f59e0b;
-            --cat-quizzes: #10b981;
-            --cat-formulas: #ef4444;
-            --cat-practicals: #06b6d4;
-            --cat-technique: #ec4899;
-            --cat-grade9: #f97316;
+            --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         *,
         *::before,
@@ -310,7 +305,7 @@
             font-weight: 600;
         }
 
-        /* ============ IMPROVED HERO ============ */
+        /* ============ HERO ============ */
         .hero {
             padding: 3rem 1.5rem 5rem;
             position: relative;
@@ -323,7 +318,7 @@
             inset: 0;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.03;
+            opacity: 0.025;
             background-image: radial-gradient(circle at 20% 30%, var(--accent) 1px, transparent 1px),
                 radial-gradient(circle at 70% 60%, var(--accent-dark) 1px, transparent 1px),
                 radial-gradient(circle at 40% 80%, #f59e0b 1px, transparent 1px),
@@ -427,70 +422,158 @@
             color: var(--text);
             font-weight: 700;
         }
-        .hero-search {
+
+        /* ============ REDESIGNED SEARCH ============ */
+        .hero-search-wrap {
             max-width: 560px;
             margin: 0 auto 2rem;
+            animation: fadeInUp 0.6s ease-out 0.25s both;
+            position: relative;
+        }
+        .hero-search {
             display: flex;
-            gap: 0;
+            align-items: center;
             background: var(--bg-card);
             border: 2px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: 9999px;
             overflow: hidden;
             transition: var(--transition);
-            animation: fadeInUp 0.6s ease-out 0.25s both;
             box-shadow: var(--shadow-card);
+            position: relative;
+            z-index: 1;
         }
         .hero-search:focus-within {
             border-color: var(--accent);
-            box-shadow: 0 0 0 8px rgba(6, 182, 212, 0.08), var(--shadow-card);
+            box-shadow: 0 0 0 8px rgba(6, 182, 212, 0.07), var(--shadow-card);
+            transform: translateY(-1px);
+        }
+        .search-input-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            pointer-events: none;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+        .hero-search:focus-within .search-input-icon {
+            color: var(--accent);
         }
         .hero-search input {
             flex: 1;
             border: none;
-            padding: 1rem 1.25rem;
+            padding: 1rem 1.25rem 1rem 2.75rem;
             font-size: 1rem;
             font-family: var(--font-stack);
             color: var(--text);
             background: transparent;
             outline: none;
             min-width: 0;
+            z-index: 1;
         }
         .hero-search input::placeholder {
             color: var(--text-muted);
+            font-weight: 400;
         }
-        .hero-search button {
+        .hero-search .search-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.375rem;
+            padding: 0.625rem 1.5rem;
             background: linear-gradient(135deg, var(--accent), var(--accent-dark));
             color: white;
             border: none;
-            padding: 1rem 1.5rem;
-            cursor: pointer;
+            border-radius: 9999px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-family: var(--font-stack);
+            cursor: pointer;
             transition: var(--transition);
             white-space: nowrap;
+            letter-spacing: 0.01em;
+            box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            min-height: 44px;
+        }
+        .hero-search .search-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .hero-search .search-btn:hover::before {
+            opacity: 1;
+        }
+        .hero-search .search-btn:hover {
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.45);
+            transform: translateY(-1px);
+        }
+        .hero-search .search-btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+        }
+        .hero-search .search-btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
+        }
+        .hero-search .search-btn:hover svg {
+            transform: scale(1.1);
+        }
+        .search-suggestions {
             display: flex;
-            align-items: center;
             gap: 0.5rem;
-            min-height: 48px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.875rem;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+        .search-suggestion {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            background: var(--bg-alt);
+            border: 1px solid var(--border-light);
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-family: var(--font-stack);
             letter-spacing: 0.01em;
         }
-        .hero-search button:hover {
-            background: linear-gradient(135deg, #0e7490, #0891b2);
+        .search-suggestion:hover {
+            color: var(--accent-dark);
+            border-color: var(--accent-light);
+            background: var(--accent-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
         }
-        .hero-search button:active {
-            transform: scale(0.97);
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .hero-search button svg {
-            width: 18px;
-            height: 18px;
-        }
+
         .hero-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
             justify-content: center;
-            animation: fadeInUp 0.6s ease-out 0.3s both;
+            animation: fadeInUp 0.6s ease-out 0.35s both;
         }
         .btn {
             display: inline-flex;
@@ -556,57 +639,70 @@
             border-radius: var(--radius-sm);
             font-weight: 600;
         }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
         @media (max-width: 768px) {
             .hero {
                 padding: 2rem 1rem 3.5rem;
             }
             .hero-search {
-                flex-direction: column;
-                border-radius: var(--radius);
-                overflow: hidden;
+                border-radius: var(--radius-xl);
             }
             .hero-search input {
-                border-radius: var(--radius) var(--radius) 0 0;
+                padding: 0.875rem 1rem 0.875rem 2.5rem;
+                font-size: 0.95rem;
             }
-            .hero-search button {
-                border-radius: 0 0 var(--radius) var(--radius);
-                justify-content: center;
+            .hero-search .search-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.85rem;
+                margin: 0.25rem;
+            }
+            .search-input-icon {
+                left: 1rem;
+                width: 16px;
+                height: 16px;
             }
             .breadcrumb-wrap {
                 padding: 5.5rem 1rem 0;
+            }
+            .search-suggestions {
+                gap: 0.375rem;
+            }
+            .search-suggestion {
+                font-size: 0.68rem;
+                padding: 0.3rem 0.65rem;
+            }
+        }
+        @media (max-width: 420px) {
+            .hero-search {
+                flex-direction: column;
+                border-radius: var(--radius-lg);
+                gap: 0;
+            }
+            .hero-search input {
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+                padding: 0.875rem 1rem 0.875rem 2.5rem;
+                width: 100%;
+            }
+            .hero-search .search-btn {
+                width: 100%;
+                justify-content: center;
+                border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+                margin: 0;
+                padding: 0.75rem 1rem;
+            }
+            .search-input-icon {
+                top: 1.2rem;
+                transform: none;
             }
         }
     </style>
 
     <style media="print" onload="this.media='all'">
-        /* ============ IMPROVED NON-CRITICAL CSS ============ */
         .section {
             padding: 5rem 1.5rem;
             max-width: var(--max-w);
             margin: 0 auto;
             position: relative;
-        }
-        .section-divider {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
-            border-radius: 3px;
-            display: none;
         }
         .section-alt {
             background: var(--bg-alt);
@@ -654,7 +750,7 @@
             line-height: 1.7;
         }
 
-        /* ============ IMPROVED STATS ============ */
+        /* Stats */
         .stats-section {
             background: linear-gradient(180deg, #0f172a 0%, #1a2744 100%);
             padding: 3.5rem 1.5rem;
@@ -672,15 +768,6 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.5), transparent);
             z-index: 1;
-        }
-        .stats-section::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 30% 50%, rgba(6, 182, 212, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 50%, rgba(139, 92, 246, 0.04) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 0;
         }
         .stats-grid {
             max-width: var(--max-w);
@@ -714,24 +801,11 @@
             justify-content: center;
             margin: 0 auto 0.875rem;
             transition: var(--transition);
-            position: relative;
-        }
-        .stat-icon::after {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: calc(var(--radius) + 3px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            opacity: 0;
-            transition: opacity 0.3s;
         }
         .stat-item:hover .stat-icon {
             transform: scale(1.08);
             background: rgba(6, 182, 212, 0.2);
             box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
-        }
-        .stat-item:hover .stat-icon::after {
-            opacity: 1;
         }
         .stat-icon svg {
             width: 22px;
@@ -753,7 +827,7 @@
             letter-spacing: 0.03em;
         }
 
-        /* ============ IMPROVED FEATURED CARDS ============ */
+        /* Featured Cards */
         .featured-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -785,21 +859,8 @@
             z-index: 1;
             border-radius: 0 0 4px 4px;
         }
-        .featured-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 0%, rgba(6, 182, 212, 0.04) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: -1;
-            pointer-events: none;
-        }
         .featured-card:hover::before {
             transform: scaleX(1);
-        }
-        .featured-card:hover::after {
-            opacity: 1;
         }
         .featured-card:hover {
             box-shadow: var(--shadow-card-hover);
@@ -817,7 +878,6 @@
             margin-bottom: 1.25rem;
             transition: var(--transition);
             flex-shrink: 0;
-            position: relative;
         }
         .featured-card:hover .featured-card-icon {
             background: linear-gradient(135deg, var(--accent), #0891b2);
@@ -865,7 +925,7 @@
             align-self: flex-start;
         }
 
-        /* ============ IMPROVED SUBJECTS GRID ============ */
+        /* Subjects Grid */
         .subjects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -942,7 +1002,7 @@
             justify-content: center;
         }
 
-        /* ============ IMPROVED EXAM BOARDS ============ */
+        /* Exam Boards */
         .exam-boards-section {
             background: var(--bg-alt);
             position: relative;
@@ -1021,7 +1081,7 @@
             transform: scale(1.08);
         }
 
-        /* ============ IMPROVED RESOURCE MINI CARDS ============ */
+        /* Resource Mini Cards */
         .resources-mini-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1109,7 +1169,7 @@
             }
         }
 
-        /* ============ IMPROVED TIMELINE ============ */
+        /* Timeline */
         .timeline {
             position: relative;
             max-width: 700px;
@@ -1182,7 +1242,7 @@
             line-height: 1.7;
         }
 
-        /* ============ IMPROVED WHY US ============ */
+        /* Why Us */
         .why-us-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1257,19 +1317,10 @@
             line-height: 1.6;
         }
 
-        /* ============ IMPROVED TESTIMONIALS ============ */
+        /* Testimonials */
         .testimonials-section {
             background: var(--bg-alt);
             position: relative;
-        }
-        .testimonials-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
         }
         .testimonials-grid {
             display: grid;
@@ -1347,20 +1398,7 @@
             color: var(--text-muted);
         }
 
-        /* ============ IMPROVED FAQ ============ */
-        .faq-section {
-            background: var(--bg-alt);
-            position: relative;
-        }
-        .faq-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-        }
+        /* FAQ */
         .faq-list {
             max-width: 800px;
             margin: 0 auto;
@@ -1456,7 +1494,7 @@
             font-weight: 600;
         }
 
-        /* ============ IMPROVED CTA ============ */
+        /* CTA */
         .cta-section {
             background: linear-gradient(180deg, #0f172a 0%, #1a2744 100%);
             padding: 5rem 1.5rem;
@@ -1514,7 +1552,7 @@
             box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4);
         }
 
-        /* ============ FOOTER (unchanged) ============ */
+        /* Footer */
         .site-footer {
             background: #0c1524;
             color: rgba(255, 255, 255, 0.6);
@@ -1585,7 +1623,7 @@
             font-weight: 500;
         }
 
-        /* ============ FLOATING ELEMENTS ============ */
+        /* Floating Elements */
         .whatsapp-float {
             position: fixed;
             bottom: 2rem;
@@ -1675,7 +1713,7 @@
             color: var(--text);
         }
 
-        /* ============ SEARCH STATES ============ */
+        /* Search states */
         .no-results {
             display: none;
             text-align: center;
@@ -1702,7 +1740,6 @@
             }
         }
 
-        /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
             .testimonials-grid {
                 grid-template-columns: 1fr;
@@ -1818,56 +1855,6 @@
             }
         }
     </style>
-
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@graph": [{
-                "@type": "CollectionPage",
-                "@id": "https://tutormalik.uk/resources.html#webpage",
-                "url": "https://tutormalik.uk/resources.html",
-                "name": "Free GCSE Resources Hub | Past Papers, Revision Notes & Quizzes | Tutor Malek",
-                "description": "Complete GCSE resources hub with free past papers, revision notes, flashcards, quizzes & grade 9 guides for AQA, Edexcel, OCR & more.",
-                "isPartOf": {
-                    "@type": "WebSite",
-                    "@id": "https://tutormalik.uk/#website",
-                    "name": "Tutor Malek",
-                    "url": "https://tutormalik.uk"
-                },
-                "about": {
-                    "@type": "EducationalOrganization",
-                    "@id": "https://tutormalik.uk/#organization",
-                    "name": "Tutor Malek",
-                    "url": "https://tutormalik.uk",
-                    "description": "Expert online private tuition for GCSE Maths and Science, 11+, SATs and A-Level. UK-wide.",
-                    "areaServed": { "@type": "Country", "name": "United Kingdom" }
-                }
-            }, {
-                "@type": "BreadcrumbList",
-                "@id": "https://tutormalik.uk/resources.html#breadcrumb",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tutormalik.uk/" },
-                    { "@type": "ListItem", "position": 2, "name": "GCSE Resources", "item": "https://tutormalik.uk/resources.html" }
-                ]
-            }, {
-                "@type": "FAQPage",
-                "@id": "https://tutormalik.uk/resources.html#faq",
-                "mainEntity": [
-                    { "@type": "Question", "name": "Are these GCSE resources really free?", "acceptedAnswer": { "@type": "Answer",
-                            "text": "Yes — every resource in this hub is completely free to download and use. There are no paywalls, no email captures, and no hidden fees." }
-                    },
-                    { "@type": "Question", "name": "Which exam boards do the resources cover?", "acceptedAnswer": { "@type": "Answer",
-                            "text": "The resources cover all major UK exam boards including AQA, Edexcel, OCR, Eduqas, WJEC, and CCEA." } },
-                    { "@type": "Question", "name": "How often are new resources added?", "acceptedAnswer": { "@type": "Answer",
-                            "text": "New resources are added weekly. I regularly create fresh revision notes, past paper compilations, and practice quizzes." } },
-                    { "@type": "Question", "name": "Can I use these resources alongside private tuition?", "acceptedAnswer": { "@type": "Answer",
-                            "text": "Absolutely — these resources are designed to complement 1-to-1 tuition perfectly." } },
-                    { "@type": "Question", "name": "Do you have resources for other levels like 11+ or A-Level?", "acceptedAnswer": { "@type": "Answer",
-                            "text": "Yes — while this hub focuses on GCSE, I also offer dedicated resource pages for 11+ preparation, SATs, and A-Level Science." } }
-                ]
-            }]
-        }
-    </script>
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -1931,7 +1918,7 @@
             </ol>
         </nav>
 
-        <!-- Improved Hero -->
+        <!-- Hero with redesigned search -->
         <section class="hero" aria-label="GCSE Resources introduction">
             <div class="hero-bg-pattern" aria-hidden="true"></div>
             <div class="hero-container">
@@ -1941,12 +1928,22 @@
                 </div>
                 <h1>Your Complete <em>GCSE Resources Hub</em> — All Free</h1>
                 <p>Access <strong>500+ free GCSE resources</strong> including past papers, revision notes, flashcards, interactive quizzes, and grade 9 guides. Covering <strong>Maths, Science, English</strong> and 19 more subjects across <strong>AQA, Edexcel, OCR</strong> and all major exam boards.</p>
-                <div class="hero-search" id="heroSearch">
-                    <input type="text" id="searchInput" placeholder="Search resources... e.g. 'AQA Biology past papers'" aria-label="Search GCSE resources">
-                    <button type="button" id="searchButton" aria-label="Search resources">
-                        <svg aria-hidden="true"><use href="#icon-search"/></svg>
-                        Search
-                    </button>
+                <div class="hero-search-wrap">
+                    <div class="hero-search" id="heroSearch">
+                        <svg class="search-input-icon" aria-hidden="true"><use href="#icon-search"/></svg>
+                        <input type="text" id="searchInput" placeholder="Search resources... e.g. 'AQA Biology past papers'" aria-label="Search GCSE resources">
+                        <button type="button" class="search-btn" id="searchButton" aria-label="Search resources">
+                            <svg aria-hidden="true"><use href="#icon-search"/></svg>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                    <div class="search-suggestions">
+                        <button class="search-suggestion" data-suggestion="past papers">Past Papers</button>
+                        <button class="search-suggestion" data-suggestion="aqa biology">AQA Biology</button>
+                        <button class="search-suggestion" data-suggestion="maths revision">Maths Revision</button>
+                        <button class="search-suggestion" data-suggestion="flashcards">Flashcards</button>
+                        <button class="search-suggestion" data-suggestion="grade 9">Grade 9</button>
+                    </div>
                 </div>
                 <div class="hero-buttons">
                     <a href="#featured" class="btn btn-primary">
@@ -1958,113 +1955,36 @@
             </div>
         </section>
 
-        <!-- Improved Stats -->
+        <!-- Stats -->
         <section class="stats-section" aria-label="Resource statistics">
             <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-icon"><svg aria-hidden="true"><use href="#icon-collection"/></svg></div>
-                    <div class="stat-value">500+</div>
-                    <div class="stat-label">Free Resources</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><svg aria-hidden="true"><use href="#icon-doc"/></svg></div>
-                    <div class="stat-value">100+</div>
-                    <div class="stat-label">Past Papers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><svg aria-hidden="true"><use href="#icon-quiz"/></svg></div>
-                    <div class="stat-value">1000+</div>
-                    <div class="stat-label">Quiz Questions</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><svg aria-hidden="true"><use href="#icon-globe"/></svg></div>
-                    <div class="stat-value">6</div>
-                    <div class="stat-label">Exam Boards</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><svg aria-hidden="true"><use href="#icon-clock"/></svg></div>
-                    <div class="stat-value">Weekly</div>
-                    <div class="stat-label">New Content</div>
-                </div>
+                <div class="stat-item"><div class="stat-icon"><svg aria-hidden="true"><use href="#icon-collection"/></svg></div><div class="stat-value">500+</div><div class="stat-label">Free Resources</div></div>
+                <div class="stat-item"><div class="stat-icon"><svg aria-hidden="true"><use href="#icon-doc"/></svg></div><div class="stat-value">100+</div><div class="stat-label">Past Papers</div></div>
+                <div class="stat-item"><div class="stat-icon"><svg aria-hidden="true"><use href="#icon-quiz"/></svg></div><div class="stat-value">1000+</div><div class="stat-label">Quiz Questions</div></div>
+                <div class="stat-item"><div class="stat-icon"><svg aria-hidden="true"><use href="#icon-globe"/></svg></div><div class="stat-value">6</div><div class="stat-label">Exam Boards</div></div>
+                <div class="stat-item"><div class="stat-icon"><svg aria-hidden="true"><use href="#icon-clock"/></svg></div><div class="stat-value">Weekly</div><div class="stat-label">New Content</div></div>
             </div>
         </section>
 
-        <!-- Improved Featured Categories -->
+        <!-- Featured Categories -->
         <section class="section" id="featured" aria-labelledby="featured-heading">
-            <div class="section-header">
-                <span class="section-label">Resource Categories</span>
-                <h2 id="featured-heading">Everything You Need for GCSE Success</h2>
-                <p>From past papers to grade 9 guides — every type of resource a GCSE student could need, all in one place, completely free.</p>
-            </div>
+            <div class="section-header"><span class="section-label">Resource Categories</span><h2 id="featured-heading">Everything You Need for GCSE Success</h2><p>From past papers to grade 9 guides — every type of resource a GCSE student could need, all in one place, completely free.</p></div>
             <div class="featured-grid" id="featuredGrid">
-                <article class="featured-card" data-search-terms="past papers exam papers practice papers aqa edexcel ocr">
-                    <div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-doc"/></svg></div>
-                    <h3>Past Papers</h3>
-                    <p>Complete library of GCSE past papers with mark schemes and examiner reports. Practise with real exam questions under timed conditions.</p>
-                    <div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 80+ papers available</div>
-                    <a href="/resources-gcse-past-papers.html" class="btn btn-primary btn-sm">View Past Papers</a>
-                </article>
-                <article class="featured-card" data-search-terms="revision notes study notes topic summaries key points">
-                    <div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-notes"/></svg></div>
-                    <h3>Revision Notes</h3>
-                    <p>Concise, beautifully structured revision notes covering every topic on the GCSE specification. Written by an experienced tutor.</p>
-                    <div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 120+ topic guides</div>
-                    <a href="/resources-gcse-revision-notes.html" class="btn btn-primary btn-sm">Explore Notes</a>
-                </article>
-                <article class="featured-card" data-search-terms="flashcards revision cards quick recall memory aids spaced repetition">
-                    <div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-flashcard"/></svg></div>
-                    <h3>Flashcards</h3>
-                    <p>Ready-to-use digital flashcards for quick-fire recall and spaced repetition. Perfect for memorising key facts, formulas, and definitions.</p>
-                    <div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 500+ flashcard sets</div>
-                    <a href="/resources-gcse-flashcards.html" class="btn btn-primary btn-sm">Start Revising</a>
-                </article>
-                <article class="featured-card" data-search-terms="quizzes interactive quizzes self-assessment multiple choice test yourself">
-                    <div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-quiz"/></svg></div>
-                    <h3>Interactive Quizzes</h3>
-                    <p>Test your knowledge with interactive quizzes that give instant feedback. Track your progress and identify weak areas.</p>
-                    <div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 1000+ questions</div>
-                    <a href="/resources-gcse-quizzes.html" class="btn btn-primary btn-sm">Take a Quiz</a>
-                </article>
-                <article class="featured-card" data-search-terms="formula sheets equation sheets maths formulas physics equations">
-                    <div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-formula"/></svg></div>
-                    <h3>Formula Sheets</h3>
-                    <p>All the essential formulas, equations, and constants for GCSE Maths and Science — neatly organised on printable sheets.</p>
-                    <div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 25+ formula sheets</div>
-                    <a href="/resources-gcse-formula-sheets.html" class="btn btn-primary btn-sm">Download Sheets</a>
-                </article>
-                <article class="featured-card" data-search-terms="required practicals science practicals experiments biology chemistry physics">
-                    <div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-practical"/></svg></div>
-                    <h3>Required Practicals</h3>
-                    <p>Step-by-step guides for every GCSE Science required practical. Includes methods, common mistakes, sample data, and exam questions.</p>
-                    <div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 28 practical guides</div>
-                    <a href="/resources-gcse-practicals.html" class="btn btn-primary btn-sm">View Practicals</a>
-                </article>
-                <article class="featured-card" data-search-terms="exam technique exam tips command words how to answer marking schemes">
-                    <div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-technique"/></svg></div>
-                    <h3>Exam Technique</h3>
-                    <p>Master the art of answering exam questions with guides on command words, mark schemes, time allocation, and structuring responses.</p>
-                    <div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 15+ technique guides</div>
-                    <a href="/resources-gcse-exam-technique.html" class="btn btn-primary btn-sm">Improve Technique</a>
-                </article>
-                <article class="featured-card" data-search-terms="grade 9 guides top grades high achievement model answers exemplar">
-                    <div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-grade9"/></svg></div>
-                    <h3>Grade 9 Guides</h3>
-                    <p>See what it takes to achieve the top grades with model answers, exemplar essays, and detailed breakdowns of Grade 9 responses.</p>
-                    <div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 40+ model answers</div>
-                    <a href="/resources-gcse-grade-9.html" class="btn btn-primary btn-sm">Aim for Grade 9</a>
-                </article>
+                <article class="featured-card" data-search-terms="past papers exam papers practice papers aqa edexcel ocr"><div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-doc"/></svg></div><h3>Past Papers</h3><p>Complete library of GCSE past papers with mark schemes and examiner reports. Practise with real exam questions under timed conditions.</p><div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 80+ papers available</div><a href="/resources-gcse-past-papers.html" class="btn btn-primary btn-sm">View Past Papers</a></article>
+                <article class="featured-card" data-search-terms="revision notes study notes topic summaries key points"><div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-notes"/></svg></div><h3>Revision Notes</h3><p>Concise, beautifully structured revision notes covering every topic on the GCSE specification. Written by an experienced tutor.</p><div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 120+ topic guides</div><a href="/resources-gcse-revision-notes.html" class="btn btn-primary btn-sm">Explore Notes</a></article>
+                <article class="featured-card" data-search-terms="flashcards revision cards quick recall memory aids spaced repetition"><div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-flashcard"/></svg></div><h3>Flashcards</h3><p>Ready-to-use digital flashcards for quick-fire recall and spaced repetition. Perfect for memorising key facts, formulas, and definitions.</p><div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 500+ flashcard sets</div><a href="/resources-gcse-flashcards.html" class="btn btn-primary btn-sm">Start Revising</a></article>
+                <article class="featured-card" data-search-terms="quizzes interactive quizzes self-assessment multiple choice test yourself"><div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-quiz"/></svg></div><h3>Interactive Quizzes</h3><p>Test your knowledge with interactive quizzes that give instant feedback. Track your progress and identify weak areas.</p><div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 1000+ questions</div><a href="/resources-gcse-quizzes.html" class="btn btn-primary btn-sm">Take a Quiz</a></article>
+                <article class="featured-card" data-search-terms="formula sheets equation sheets maths formulas physics equations"><div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-formula"/></svg></div><h3>Formula Sheets</h3><p>All the essential formulas, equations, and constants for GCSE Maths and Science — neatly organised on printable sheets.</p><div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 25+ formula sheets</div><a href="/resources-gcse-formula-sheets.html" class="btn btn-primary btn-sm">Download Sheets</a></article>
+                <article class="featured-card" data-search-terms="required practicals science practicals experiments biology chemistry physics"><div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-practical"/></svg></div><h3>Required Practicals</h3><p>Step-by-step guides for every GCSE Science required practical. Includes methods, common mistakes, sample data, and exam questions.</p><div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 28 practical guides</div><a href="/resources-gcse-practicals.html" class="btn btn-primary btn-sm">View Practicals</a></article>
+                <article class="featured-card" data-search-terms="exam technique exam tips command words how to answer marking schemes"><div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-technique"/></svg></div><h3>Exam Technique</h3><p>Master the art of answering exam questions with guides on command words, mark schemes, time allocation, and structuring responses.</p><div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 15+ technique guides</div><a href="/resources-gcse-exam-technique.html" class="btn btn-primary btn-sm">Improve Technique</a></article>
+                <article class="featured-card" data-search-terms="grade 9 guides top grades high achievement model answers exemplar"><div class="featured-card-icon"><svg aria-hidden="true"><use href="#icon-grade9"/></svg></div><h3>Grade 9 Guides</h3><p>See what it takes to achieve the top grades with model answers, exemplar essays, and detailed breakdowns of Grade 9 responses.</p><div class="featured-card-meta"><svg aria-hidden="true"><use href="#icon-download"/></svg> 40+ model answers</div><a href="/resources-gcse-grade-9.html" class="btn btn-primary btn-sm">Aim for Grade 9</a></article>
             </div>
             <p class="no-results" id="noFeaturedResults">No resources match your search. Try a different keyword like "past papers", "science", or "AQA".</p>
         </section>
 
-        <!-- Improved Subjects -->
-        <section class="section section-alt" id="subjects" aria-labelledby="subjects-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;">
-            <div style="max-width:var(--max-w);margin:0 auto;">
-                <div class="section-header">
-                    <span class="section-label">All GCSE Subjects</span>
-                    <h2 id="subjects-heading">Resources for Every GCSE Subject</h2>
-                    <p>Browse resources by subject. Each subject page contains past papers, revision notes, flashcards, and quizzes tailored to that specific GCSE course.</p>
-                </div>
+        <!-- Subjects -->
+        <section class="section section-alt" id="subjects" aria-labelledby="subjects-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;"><div style="max-width:var(--max-w);margin:0 auto;">
+                <div class="section-header"><span class="section-label">All GCSE Subjects</span><h2 id="subjects-heading">Resources for Every GCSE Subject</h2><p>Browse resources by subject. Each subject page contains past papers, revision notes, flashcards, and quizzes tailored to that specific GCSE course.</p></div>
                 <div class="subjects-grid" id="subjectsGrid">
                     <article class="subject-card" data-search-terms="maths mathematics gcse maths numbers algebra geometry"><h4>Maths</h4><p>Algebra, geometry, trigonometry, statistics, number, ratio, and probability. Foundation & Higher tiers.</p><div class="resource-tags"><span class="resource-tag">Past Papers</span><span class="resource-tag">Notes</span><span class="resource-tag">Quizzes</span></div><a href="/resources-gcse-maths.html" class="btn btn-secondary btn-sm">Maths Resources</a></article>
                     <article class="subject-card" data-search-terms="english language gcse english language reading writing creative"><h4>English Language</h4><p>Reading comprehension, creative writing, persuasive writing, and analysis. AQA, Edexcel & OCR.</p><div class="resource-tags"><span class="resource-tag">Past Papers</span><span class="resource-tag">Model Answers</span></div><a href="/resources-gcse-english-language.html" class="btn btn-secondary btn-sm">English Lang Resources</a></article>
@@ -2090,119 +2010,100 @@
                     <article class="subject-card" data-search-terms="statistics gcse statistics data handling probability sampling"><h4>Statistics</h4><p>Data collection, representation, analysis, probability distributions, hypothesis testing, and statistical enquiry.</p><div class="resource-tags"><span class="resource-tag">Past Papers</span><span class="resource-tag">Notes</span></div><a href="/resources-gcse-statistics.html" class="btn btn-secondary btn-sm">Statistics Resources</a></article>
                 </div>
                 <p class="no-results" id="noSubjectResults">No subjects match your search. Try searching for "Maths", "Science", "English", or a specific subject name.</p>
-            </div>
-        </section>
+        </div></section>
 
-        <!-- Improved Exam Boards -->
-        <section class="section" aria-labelledby="boards-heading" style="padding:5rem 1.5rem;max-width:100%;background:var(--bg);">
-            <div style="max-width:var(--max-w);margin:0 auto;">
-                <div class="section-header">
-                    <span class="section-label">Exam Boards</span>
-                    <h2 id="boards-heading">Resources Matched to Your Exam Board</h2>
-                    <p>Every resource is labelled with the exam board it supports. Choose your board to find specification-matched materials.</p>
-                </div>
+        <!-- Exam Boards -->
+        <section class="section" aria-labelledby="boards-heading" style="padding:5rem 1.5rem;max-width:100%;background:var(--bg);"><div style="max-width:var(--max-w);margin:0 auto;">
+                <div class="section-header"><span class="section-label">Exam Boards</span><h2 id="boards-heading">Resources Matched to Your Exam Board</h2><p>Every resource is labelled with the exam board it supports. Choose your board to find specification-matched materials.</p></div>
                 <div class="exam-boards-grid">
-                    <a href="/resources-gcse-aqa.html" class="exam-board-card" data-search-terms="aqa assessment and qualifications alliance"><div class="board-icon">AQA</div>AQA</a>
-                    <a href="/resources-gcse-edexcel.html" class="exam-board-card" data-search-terms="edexcel pearson edexcel"><div class="board-icon">PE</div>Edexcel</a>
-                    <a href="/resources-gcse-ocr.html" class="exam-board-card" data-search-terms="ocr oxford cambridge rsa"><div class="board-icon">OCR</div>OCR</a>
-                    <a href="/resources-gcse-eduqas.html" class="exam-board-card" data-search-terms="eduqas wjec eduqas"><div class="board-icon">EQ</div>Eduqas</a>
-                    <a href="/resources-gcse-wjec.html" class="exam-board-card" data-search-terms="wjec wales"><div class="board-icon">WJ</div>WJEC</a>
-                    <a href="/resources-gcse-ccea.html" class="exam-board-card" data-search-terms="ccea northern ireland"><div class="board-icon">CC</div>CCEA</a>
+                    <a href="/resources-gcse-aqa.html" class="exam-board-card"><div class="board-icon">AQA</div>AQA</a>
+                    <a href="/resources-gcse-edexcel.html" class="exam-board-card"><div class="board-icon">PE</div>Edexcel</a>
+                    <a href="/resources-gcse-ocr.html" class="exam-board-card"><div class="board-icon">OCR</div>OCR</a>
+                    <a href="/resources-gcse-eduqas.html" class="exam-board-card"><div class="board-icon">EQ</div>Eduqas</a>
+                    <a href="/resources-gcse-wjec.html" class="exam-board-card"><div class="board-icon">WJ</div>WJEC</a>
+                    <a href="/resources-gcse-ccea.html" class="exam-board-card"><div class="board-icon">CC</div>CCEA</a>
                 </div>
-            </div>
-        </section>
+        </div></section>
 
-        <!-- Popular Resources (improved) -->
-        <section class="section section-alt" aria-labelledby="popular-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;">
-            <div style="max-width:var(--max-w);margin:0 auto;">
-                <div class="section-header"><span class="section-label">Most Popular</span><h2 id="popular-heading">Popular GCSE Resources This Week</h2><p>The resources students are downloading and using most right now. Don't miss out on these essential revision materials.</p></div>
+        <!-- Popular Resources -->
+        <section class="section section-alt" aria-labelledby="popular-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;"><div style="max-width:var(--max-w);margin:0 auto;">
+                <div class="section-header"><span class="section-label">Most Popular</span><h2 id="popular-heading">Popular GCSE Resources This Week</h2><p>The resources students are downloading and using most right now.</p></div>
                 <div class="resources-mini-grid">
                     <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-doc"/></svg></div><div class="resource-mini-info"><h4>AQA GCSE Maths Past Papers (2024)</h4><p>Complete set of 2024 exam papers with mark schemes. Foundation & Higher tiers included.</p><span class="mini-badge">Popular</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-notes"/></svg></div><div class="resource-mini-info"><h4>GCSE Biology: Cell Biology Complete Notes</h4><p>Comprehensive revision notes covering all cell biology topics. Diagrams, key terms, and exam tips.</p><span class="mini-badge">Popular</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-formula"/></svg></div><div class="resource-mini-info"><h4>GCSE Physics Equation Sheet (All Boards)</h4><p>Printable equation sheet with every formula needed for GCSE Physics. Includes units and triangle methods.</p><span class="mini-badge">Popular</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-flashcard"/></svg></div><div class="resource-mini-info"><h4>Edexcel GCSE Chemistry Flashcards Set</h4><p>200+ digital flashcards covering the entire Edexcel Chemistry specification. Perfect for quick recall.</p><span class="mini-badge">Popular</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-quiz"/></svg></div><div class="resource-mini-info"><h4>GCSE Maths Topic Quizzes (All Topics)</h4><p>Interactive quizzes covering every GCSE Maths topic. Instant feedback and progress tracking built in.</p><span class="mini-badge">Popular</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-technique"/></svg></div><div class="resource-mini-info"><h4>How to Answer GCSE Science 6-Markers</h4><p>Step-by-step guide to tackling those high-mark questions. Includes model answers and examiner commentary.</p><span class="mini-badge">Popular</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-notes"/></svg></div><div class="resource-mini-info"><h4>GCSE Biology: Cell Biology Complete Notes</h4><p>Comprehensive revision notes covering all cell biology topics.</p><span class="mini-badge">Popular</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-formula"/></svg></div><div class="resource-mini-info"><h4>GCSE Physics Equation Sheet (All Boards)</h4><p>Printable equation sheet with every formula needed for GCSE Physics.</p><span class="mini-badge">Popular</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-flashcard"/></svg></div><div class="resource-mini-info"><h4>Edexcel GCSE Chemistry Flashcards Set</h4><p>200+ digital flashcards covering the entire Edexcel Chemistry specification.</p><span class="mini-badge">Popular</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-quiz"/></svg></div><div class="resource-mini-info"><h4>GCSE Maths Topic Quizzes (All Topics)</h4><p>Interactive quizzes covering every GCSE Maths topic with instant feedback.</p><span class="mini-badge">Popular</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-technique"/></svg></div><div class="resource-mini-info"><h4>How to Answer GCSE Science 6-Markers</h4><p>Step-by-step guide to tackling high-mark questions with model answers.</p><span class="mini-badge">Popular</span></div></article>
                 </div>
-            </div>
-        </section>
+        </div></section>
 
-        <!-- Latest Resources (improved) -->
-        <section class="section" aria-labelledby="latest-heading" style="padding:5rem 1.5rem;max-width:100%;background:var(--bg);">
-            <div style="max-width:var(--max-w);margin:0 auto;">
-                <div class="section-header"><span class="section-label">Just Added</span><h2 id="latest-heading">Latest GCSE Resources</h2><p>Fresh resources added every week. Stay ahead with the newest revision materials for the current exam series.</p></div>
+        <!-- Latest Resources -->
+        <section class="section" aria-labelledby="latest-heading" style="padding:5rem 1.5rem;max-width:100%;background:var(--bg);"><div style="max-width:var(--max-w);margin:0 auto;">
+                <div class="section-header"><span class="section-label">Just Added</span><h2 id="latest-heading">Latest GCSE Resources</h2><p>Fresh resources added every week. Stay ahead with the newest revision materials.</p></div>
                 <div class="resources-mini-grid">
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-doc"/></svg></div><div class="resource-mini-info"><h4>OCR GCSE Physics 2025 Predicted Papers</h4><p>Brand new predicted papers based on advanced information and topic trends. Higher tier focus.</p><span class="mini-badge new">New</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-notes"/></svg></div><div class="resource-mini-info"><h4>GCSE English Literature: Macbeth Character Maps</h4><p>Visual character relationship maps with key quotes and themes for every major character in Macbeth.</p><span class="mini-badge new">New</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-practical"/></svg></div><div class="resource-mini-info"><h4>AQA GCSE Biology Required Practical 10 Guide</h4><p>Complete walkthrough of the decay required practical with sample data and exam-style questions.</p><span class="mini-badge new">New</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-flashcard"/></svg></div><div class="resource-mini-info"><h4>GCSE Geography: Rivers & Coasts Flashcards</h4><p>60 digital flashcards covering physical geography river and coastal processes, landforms, and management.</p><span class="mini-badge new">New</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-grade9"/></svg></div><div class="resource-mini-info"><h4>Grade 9 GCSE History: Medicine Through Time Essay</h4><p>Full-mark exemplar essay with detailed annotation showing exactly what earned top marks from examiners.</p><span class="mini-badge new">New</span></div></article>
-                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-quiz"/></svg></div><div class="resource-mini-info"><h4>GCSE Business: Finance Topic Quiz Pack</h4><p>5 interactive quizzes covering profit, cash flow, break-even, and financial ratios. Auto-marked.</p><span class="mini-badge new">New</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-doc"/></svg></div><div class="resource-mini-info"><h4>OCR GCSE Physics 2025 Predicted Papers</h4><p>Brand new predicted papers based on advanced information and topic trends.</p><span class="mini-badge new">New</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-notes"/></svg></div><div class="resource-mini-info"><h4>GCSE English Literature: Macbeth Character Maps</h4><p>Visual character relationship maps with key quotes and themes.</p><span class="mini-badge new">New</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-practical"/></svg></div><div class="resource-mini-info"><h4>AQA GCSE Biology Required Practical 10 Guide</h4><p>Complete walkthrough of the decay required practical with sample data.</p><span class="mini-badge new">New</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-flashcard"/></svg></div><div class="resource-mini-info"><h4>GCSE Geography: Rivers & Coasts Flashcards</h4><p>60 digital flashcards covering physical geography processes.</p><span class="mini-badge new">New</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-grade9"/></svg></div><div class="resource-mini-info"><h4>Grade 9 GCSE History: Medicine Through Time Essay</h4><p>Full-mark exemplar essay with detailed annotation.</p><span class="mini-badge new">New</span></div></article>
+                    <article class="resource-mini-card"><div class="resource-mini-icon"><svg aria-hidden="true"><use href="#icon-quiz"/></svg></div><div class="resource-mini-info"><h4>GCSE Business: Finance Topic Quiz Pack</h4><p>5 interactive quizzes covering profit, cash flow, and break-even.</p><span class="mini-badge new">New</span></div></article>
                 </div>
-            </div>
-        </section>
+        </div></section>
 
-        <!-- Improved Timeline -->
-        <section class="section section-alt" aria-labelledby="timeline-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;">
-            <div style="max-width:var(--max-w);margin:0 auto;">
-                <div class="section-header"><span class="section-label">Revision Roadmap</span><h2 id="timeline-heading">Your GCSE Revision Timeline: A Step-by-Step Guide</h2><p>Not sure where to start? Follow this proven 16-week revision plan to stay organised, reduce stress, and maximise your GCSE results.</p></div>
+        <!-- Timeline -->
+        <section class="section section-alt" aria-labelledby="timeline-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;"><div style="max-width:var(--max-w);margin:0 auto;">
+                <div class="section-header"><span class="section-label">Revision Roadmap</span><h2 id="timeline-heading">Your GCSE Revision Timeline</h2><p>Follow this proven 16-week revision plan to stay organised and maximise your GCSE results.</p></div>
                 <div class="timeline">
-                    <div class="timeline-item"><div class="tl-meta">Weeks 1–2</div><h4>Audit Your Knowledge</h4><p>Go through each subject specification and rate your confidence on every topic (Red, Amber, Green). Download my free topic checklists to make this step quick and thorough.</p></div>
-                    <div class="timeline-item"><div class="tl-meta">Weeks 3–6</div><h4>Build Core Knowledge</h4><p>Start with your weakest topics. Use revision notes and flashcards to build foundational understanding. Aim for 25-minute focused study blocks with 5-minute breaks.</p></div>
-                    <div class="timeline-item"><div class="tl-meta">Weeks 7–10</div><h4>Apply With Past Papers</h4><p>Begin practising with past paper questions topic by topic. Don't worry about timing yet — focus on understanding what the question is asking and how marks are awarded.</p></div>
-                    <div class="timeline-item"><div class="tl-meta">Weeks 11–13</div><h4>Timed Practice & Exam Technique</h4><p>Move to full timed papers under exam conditions. Practise pacing, learn to spot command words, and develop strategies for difficult questions.</p></div>
-                    <div class="timeline-item"><div class="tl-meta">Weeks 14–15</div><h4>Target Weak Areas</h4><p>Analyse your timed paper results. Which topics still need work? Go back to those areas with focused revision, then retest with fresh questions.</p></div>
-                    <div class="timeline-item"><div class="tl-meta">Week 16</div><h4>Final Review & Confidence Building</h4><p>Light revision only — review your formula sheets, key definitions, and grade 9 model answers. Focus on staying calm and sleeping well.</p></div>
+                    <div class="timeline-item"><div class="tl-meta">Weeks 1–2</div><h4>Audit Your Knowledge</h4><p>Go through each subject specification and rate your confidence on every topic (Red, Amber, Green).</p></div>
+                    <div class="timeline-item"><div class="tl-meta">Weeks 3–6</div><h4>Build Core Knowledge</h4><p>Start with your weakest topics. Use revision notes and flashcards to build foundational understanding.</p></div>
+                    <div class="timeline-item"><div class="tl-meta">Weeks 7–10</div><h4>Apply With Past Papers</h4><p>Begin practising with past paper questions topic by topic. Review mark schemes carefully.</p></div>
+                    <div class="timeline-item"><div class="tl-meta">Weeks 11–13</div><h4>Timed Practice & Exam Technique</h4><p>Move to full timed papers under exam conditions. Practise pacing and command words.</p></div>
+                    <div class="timeline-item"><div class="tl-meta">Weeks 14–15</div><h4>Target Weak Areas</h4><p>Analyse your timed paper results and go back to weak areas with focused revision.</p></div>
+                    <div class="timeline-item"><div class="tl-meta">Week 16</div><h4>Final Review & Confidence Building</h4><p>Light revision only — review formula sheets, key definitions, and stay calm.</p></div>
                 </div>
-            </div>
-        </section>
+        </div></section>
 
-        <!-- Improved Why Us -->
-        <section class="section" aria-labelledby="why-us-heading" style="padding:5rem 1.5rem;max-width:100%;background:var(--bg);">
-            <div style="max-width:var(--max-w);margin:0 auto;">
-                <div class="section-header"><span class="section-label">Why Tutor Malek</span><h2 id="why-us-heading">Why Thousands of Students Use These GCSE Resources</h2><p>Created by an experienced private tutor who understands exactly what students need to succeed in their GCSEs.</p></div>
+        <!-- Why Us -->
+        <section class="section" aria-labelledby="why-us-heading" style="padding:5rem 1.5rem;max-width:100%;background:var(--bg);"><div style="max-width:var(--max-w);margin:0 auto;">
+                <div class="section-header"><span class="section-label">Why Tutor Malek</span><h2 id="why-us-heading">Why Thousands of Students Use These GCSE Resources</h2></div>
                 <div class="why-us-grid">
-                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-shield"/></svg></div><h4>Exam-Board Specific</h4><p>Every resource is matched to AQA, Edexcel, OCR, Eduqas, WJEC, or CCEA specifications so you only revise what's relevant.</p></div>
-                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-lightning"/></svg></div><h4>Designed by an Experienced Tutor</h4><p>5+ years of GCSE teaching experience means I know exactly which topics trip students up and how to explain them clearly.</p></div>
-                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-globe"/></svg></div><h4>100% Free, Always</h4><p>No paywalls, no subscriptions, no email captures. Quality education should be accessible to every student in the UK.</p></div>
-                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-clock"/></svg></div><h4>Updated Weekly</h4><p>Resources are regularly refreshed to reflect the latest exam specifications, trends, and examiner feedback.</p></div>
-                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-book-open"/></svg></div><h4>Covers 22 GCSE Subjects</h4><p>From core subjects like Maths and Science to options like Psychology, Business, and Media Studies — we've got you covered.</p></div>
-                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-download"/></svg></div><h4>Instant Access</h4><p>No waiting, no registration. Every resource is available to download or use online instantly from any device.</p></div>
+                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-shield"/></svg></div><h4>Exam-Board Specific</h4><p>Every resource is matched to AQA, Edexcel, OCR, Eduqas, WJEC, or CCEA specifications.</p></div>
+                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-lightning"/></svg></div><h4>Designed by an Experienced Tutor</h4><p>5+ years of GCSE teaching experience means I know exactly what works.</p></div>
+                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-globe"/></svg></div><h4>100% Free, Always</h4><p>No paywalls, no subscriptions, no email captures. Quality education for everyone.</p></div>
+                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-clock"/></svg></div><h4>Updated Weekly</h4><p>Resources are regularly refreshed to reflect the latest exam specifications.</p></div>
+                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-book-open"/></svg></div><h4>Covers 22 GCSE Subjects</h4><p>From core subjects to options like Psychology, Business, and Media Studies.</p></div>
+                    <div class="why-us-card"><div class="why-us-icon"><svg aria-hidden="true"><use href="#icon-download"/></svg></div><h4>Instant Access</h4><p>No waiting, no registration. Download or use online instantly from any device.</p></div>
                 </div>
-            </div>
-        </section>
+        </div></section>
 
-        <!-- Improved Testimonials -->
-        <section class="section section-alt" aria-labelledby="testimonials-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;">
-            <div style="max-width:var(--max-w);margin:0 auto;">
-                <div class="section-header"><span class="section-label">Student Feedback</span><h2 id="testimonials-heading">What GCSE Students Say</h2><p>Real feedback from students who used these resources to boost their GCSE grades.</p></div>
+        <!-- Testimonials -->
+        <section class="section section-alt" aria-labelledby="testimonials-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;"><div style="max-width:var(--max-w);margin:0 auto;">
+                <div class="section-header"><span class="section-label">Student Feedback</span><h2 id="testimonials-heading">What GCSE Students Say</h2></div>
                 <div class="testimonials-grid">
-                    <article class="testimonial"><div class="testimonial-stars" aria-label="5 out of 5 stars"><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg></div><p>"The revision notes for GCSE Biology were a lifesaver. Everything was explained so clearly. I went from a Grade 5 in my mocks to an 8 in the real exam. Thank you so much!"</p><div class="testimonial-author"><div class="testimonial-avatar" aria-hidden="true">EM</div><div><div class="testimonial-name">Emily M.</div><div class="testimonial-role">GCSE Student, Leeds</div></div></div></article>
-                    <article class="testimonial"><div class="testimonial-stars" aria-label="5 out of 5 stars"><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg></div><p>"The past paper library is incredible. Having all the AQA Maths papers in one place with mark schemes saved me so much time. The exam technique guide was brilliant too."</p><div class="testimonial-author"><div class="testimonial-avatar" aria-hidden="true">DK</div><div><div class="testimonial-name">Daniel K.</div><div class="testimonial-role">GCSE Student, Bristol</div></div></div></article>
-                    <article class="testimonial"><div class="testimonial-stars" aria-label="5 out of 5 stars"><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg><svg width="16" height="16" style="display:inline"><use href="#icon-star"/></svg></div><p>"I was struggling with Chemistry until I found the required practicals guide. Finally understood titration and got full marks on that section of the exam. Would recommend to anyone doing GCSE Science."</p><div class="testimonial-author"><div class="testimonial-avatar" aria-hidden="true">ZP</div><div><div class="testimonial-name">Zara P.</div><div class="testimonial-role">GCSE Student, London</div></div></div></article>
+                    <article class="testimonial"><div class="testimonial-stars" aria-label="5 out of 5 stars"><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg></div><p>"The revision notes for GCSE Biology were a lifesaver. I went from a Grade 5 in my mocks to an 8 in the real exam!"</p><div class="testimonial-author"><div class="testimonial-avatar">EM</div><div><div class="testimonial-name">Emily M.</div><div class="testimonial-role">GCSE Student, Leeds</div></div></div></article>
+                    <article class="testimonial"><div class="testimonial-stars" aria-label="5 out of 5 stars"><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg></div><p>"The past paper library is incredible. Having all the AQA Maths papers in one place saved me so much time."</p><div class="testimonial-author"><div class="testimonial-avatar">DK</div><div><div class="testimonial-name">Daniel K.</div><div class="testimonial-role">GCSE Student, Bristol</div></div></div></article>
+                    <article class="testimonial"><div class="testimonial-stars" aria-label="5 out of 5 stars"><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg></div><p>"I was struggling with Chemistry until I found the required practicals guide. Finally understood titration!"</p><div class="testimonial-author"><div class="testimonial-avatar">ZP</div><div><div class="testimonial-name">Zara P.</div><div class="testimonial-role">GCSE Student, London</div></div></div></article>
                 </div>
-            </div>
-        </section>
+        </div></section>
 
-        <!-- Improved FAQ -->
-        <section class="section section-alt" aria-labelledby="faq-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;">
-            <div style="max-width:var(--max-w);margin:0 auto;">
-                <div class="section-header"><span class="section-label">Common Questions</span><h2 id="faq-heading">Frequently Asked Questions About GCSE Resources</h2><p>Quick answers to common questions about using this resource hub for your GCSE revision.</p></div>
+        <!-- FAQ -->
+        <section class="section section-alt" aria-labelledby="faq-heading" style="background:var(--bg-alt);padding:5rem 1.5rem;max-width:100%;"><div style="max-width:var(--max-w);margin:0 auto;">
+                <div class="section-header"><span class="section-label">Common Questions</span><h2 id="faq-heading">Frequently Asked Questions</h2></div>
                 <div class="faq-list">
-                    <details name="faq-group"><summary>Are these GCSE resources really free?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer">Yes — every resource in this hub is <strong>completely free</strong> to download and use. There are no paywalls, no email captures, and no hidden fees. I believe every student deserves access to quality revision materials regardless of their financial situation.</div></details>
-                    <details name="faq-group"><summary>Which exam boards do the resources cover?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer">The resources cover all major UK exam boards including <strong>AQA, Edexcel, OCR, Eduqas, WJEC, and CCEA</strong>. Each resource is clearly labelled with the exam board and specification it targets.</div></details>
-                    <details name="faq-group"><summary>How often are new resources added?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer"><strong>New resources are added weekly.</strong> I regularly create fresh revision notes, past paper compilations, and practice quizzes based on the latest specifications and exam trends. Bookmark this page to stay updated.</div></details>
-                    <details name="faq-group"><summary>Can I use these resources alongside private tuition?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer">Absolutely — these resources are designed to <strong>complement 1-to-1 tuition</strong> perfectly. Many of my private students use the hub between lessons to reinforce what we've covered. They also work brilliantly as standalone revision tools.</div></details>
-                    <details name="faq-group"><summary>Do you have resources for other levels like 11+ or A-Level?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer">Yes — while this hub focuses on GCSE, I also offer dedicated resource pages for <strong>11+ preparation, SATs, and A-Level Science</strong>. You can find links to those pages in the main navigation menu and the footer.</div></details>
+                    <details name="faq-group"><summary>Are these GCSE resources really free?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer">Yes — every resource in this hub is <strong>completely free</strong>. No paywalls, no email captures, no hidden fees.</div></details>
+                    <details name="faq-group"><summary>Which exam boards do the resources cover?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer">All major UK exam boards: <strong>AQA, Edexcel, OCR, Eduqas, WJEC, and CCEA</strong>.</div></details>
+                    <details name="faq-group"><summary>How often are new resources added?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer"><strong>New resources are added weekly.</strong> Bookmark this page to stay updated.</div></details>
+                    <details name="faq-group"><summary>Can I use these alongside private tuition?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer">Absolutely — these resources <strong>complement 1-to-1 tuition</strong> perfectly and work brilliantly as standalone tools.</div></details>
+                    <details name="faq-group"><summary>Do you have resources for 11+ or A-Level?<span class="faq-icon"><svg aria-hidden="true"><use href="#icon-plus"/></svg></span></summary><div class="faq-answer">Yes — dedicated pages for <strong>11+, SATs, and A-Level Science</strong> are available in the navigation and footer.</div></details>
                 </div>
-            </div>
-        </section>
+        </div></section>
 
-        <!-- Improved CTA -->
+        <!-- CTA -->
         <section class="cta-section" aria-labelledby="cta-heading">
             <div class="cta-inner">
                 <h2 id="cta-heading">Need Personal Help With Your GCSEs?</h2>
-                <p>These free resources are a great start, but sometimes a student needs 1-to-1 support. Book a private online tuition session from just £10 and get personalised guidance from an experienced GCSE tutor.</p>
+                <p>These free resources are a great start, but sometimes a student needs 1-to-1 support. Book a private online tuition session from just £10.</p>
                 <a href="https://wa.me/923379244731" class="btn btn-primary" rel="noopener">
                     <svg width="20" height="20" aria-hidden="true"><use href="#icon-whatsapp"/></svg>
                     Message Me on WhatsApp
@@ -2214,10 +2115,7 @@
     <!-- Footer (unchanged) -->
     <footer class="site-footer">
         <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="/" class="logo" aria-label="Tutor Malek Homepage"><span class="logo-mark" aria-hidden="true">M</span><span>TutorMalek</span></a>
-                <p>Expert online private tuition for GCSE, 11+, SATs, and A-Level Science. UK-wide. Free GCSE resources hub with past papers, revision notes, and quizzes for 22 subjects.</p>
-            </div>
+            <div class="footer-brand"><a href="/" class="logo"><span class="logo-mark">M</span><span>TutorMalek</span></a><p>Expert online private tuition for GCSE, 11+, SATs, and A-Level Science. UK-wide. Free GCSE resources hub.</p></div>
             <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="/">Home</a></li><li><a href="/about.html">About</a></li><li><a href="/subjects-and-pricing.html">Subjects & Pricing</a></li><li><a href="/resources.html">GCSE Resources</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
             <div class="footer-col"><h4>Resources</h4><ul><li><a href="/resources-gcse-maths.html">GCSE Maths</a></li><li><a href="/resources-gcse-science.html">GCSE Science</a></li><li><a href="/resources-gcse-past-papers.html">Past Papers</a></li><li><a href="/resources-11-plus.html">11+ Prep</a></li><li><a href="/resources-sats.html">SATs</a></li></ul></div>
             <div class="footer-col"><h4>Legal</h4><ul><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/terms.html">Terms of Service</a></li></ul></div>
@@ -2225,13 +2123,10 @@
         <div class="footer-bottom"><p>&copy; 2026 Tutor Malek. All rights reserved. <time datetime="2026-07-18">Page updated July 2026</time></p></div>
     </footer>
 
-    <!-- Floating WhatsApp -->
     <a href="https://wa.me/923379244731" class="whatsapp-float" aria-label="Message Tutor Malek on WhatsApp" rel="noopener">
         <svg aria-hidden="true"><use href="#icon-whatsapp"/></svg>
         <span class="whatsapp-tooltip">Chat on WhatsApp</span>
     </a>
-
-    <!-- Back to Top -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">
         <svg aria-hidden="true"><use href="#icon-arrow-up"/></svg>
     </button>
@@ -2246,9 +2141,9 @@
                     var isActive = navLinks.classList.toggle('active');
                     menuToggle.setAttribute('aria-expanded', isActive);
                 });
-                var navLinkItems = navLinks.querySelectorAll('a');
-                for (var i = 0; i < navLinkItems.length; i++) {
-                    navLinkItems[i].addEventListener('click', function() {
+                var items = navLinks.querySelectorAll('a');
+                for (var i = 0; i < items.length; i++) {
+                    items[i].addEventListener('click', function() {
                         navLinks.classList.remove('active');
                         menuToggle.setAttribute('aria-expanded', 'false');
                     });
@@ -2261,11 +2156,12 @@
                 if (!ticking) {
                     requestAnimationFrame(function() {
                         var currentScrollY = window.scrollY;
-                        if (currentScrollY > 10) { header.classList.add('scrolled'); } else { header.classList
-                                .remove('scrolled'); }
+                        if (currentScrollY > 10) header.classList.add('scrolled');
+                        else header.classList.remove('scrolled');
                         if (window.innerWidth <= 768) {
-                            if (currentScrollY > lastScrollY && currentScrollY > 100) { header.style.transform =
-                                    'translateY(-100%)'; } else { header.style.transform = 'translateY(0)'; }
+                            if (currentScrollY > lastScrollY && currentScrollY > 100) header.style.transform =
+                                'translateY(-100%)';
+                            else header.style.transform = 'translateY(0)';
                         }
                         lastScrollY = currentScrollY;
                         ticking = false;
@@ -2278,14 +2174,17 @@
                 var scrollTop = window.scrollY;
                 var docHeight = document.documentElement.scrollHeight - window.innerHeight;
                 var scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                if (scrollProgress) { scrollProgress.style.width = Math.min(scrollPercent, 100) + '%'; }
+                if (scrollProgress) scrollProgress.style.width = Math.min(scrollPercent, 100) + '%';
             }, { passive: true });
             var backToTop = document.getElementById('backToTop');
             window.addEventListener('scroll', function() {
-                if (backToTop) { if (window.scrollY > 500) { backToTop.classList.add('visible'); } else { backToTop
-                            .classList.remove('visible'); } }
+                if (backToTop) {
+                    if (window.scrollY > 500) backToTop.classList.add('visible');
+                    else backToTop.classList.remove('visible');
+                }
             }, { passive: true });
-            if (backToTop) { backToTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); }
+            if (backToTop) backToTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
             var searchInput = document.getElementById('searchInput');
             var searchButton = document.getElementById('searchButton');
             var featuredGrid = document.getElementById('featuredGrid');
@@ -2293,45 +2192,44 @@
             var noFeaturedResults = document.getElementById('noFeaturedResults');
             var noSubjectResults = document.getElementById('noSubjectResults');
 
-            function performSearch() {
-                var query = (searchInput.value || '').toLowerCase().trim();
+            function performSearch(query) {
+                query = (query || (searchInput ? searchInput.value : '') || '').toLowerCase().trim();
                 if (!query) { resetSearch(); return; }
+                if (searchInput) searchInput.value = query;
                 var featuredCards = featuredGrid ? featuredGrid.querySelectorAll('.featured-card') : [];
                 var featuredVisible = 0;
                 for (var i = 0; i < featuredCards.length; i++) {
                     var card = featuredCards[i];
-                    var searchTerms = (card.getAttribute('data-search-terms') || '') + ' ' + (card.querySelector('h3') ? card
+                    var terms = (card.getAttribute('data-search-terms') || '') + ' ' + (card.querySelector('h3') ? card
                         .querySelector('h3').textContent : '') + ' ' + (card.querySelector('p') ? card.querySelector('p')
                         .textContent : '');
-                    searchTerms = searchTerms.toLowerCase();
-                    if (searchTerms.indexOf(query) > -1) {
+                    if (terms.toLowerCase().indexOf(query) > -1) {
                         card.style.display = '';
                         card.classList.add('search-highlight');
                         setTimeout(function(c) { return function() { c.classList.remove('search-highlight'); }; }(card),
                             1500);
                         featuredVisible++;
-                    } else { card.style.display = 'none'; }
+                    } else card.style.display = 'none';
                 }
-                if (noFeaturedResults) { noFeaturedResults.classList.toggle('visible', featuredVisible === 0); }
+                if (noFeaturedResults) noFeaturedResults.classList.toggle('visible', featuredVisible === 0);
                 var subjectCards = subjectsGrid ? subjectsGrid.querySelectorAll('.subject-card') : [];
                 var subjectVisible = 0;
                 for (var j = 0; j < subjectCards.length; j++) {
                     var scard = subjectCards[j];
-                    var sSearchTerms = (scard.getAttribute('data-search-terms') || '') + ' ' + (scard.querySelector('h4') ? scard
+                    var sterms = (scard.getAttribute('data-search-terms') || '') + ' ' + (scard.querySelector('h4') ? scard
                         .querySelector('h4').textContent : '') + ' ' + (scard.querySelector('p') ? scard.querySelector('p')
                         .textContent : '');
-                    sSearchTerms = sSearchTerms.toLowerCase();
-                    if (sSearchTerms.indexOf(query) > -1) {
+                    if (sterms.toLowerCase().indexOf(query) > -1) {
                         scard.style.display = '';
                         scard.classList.add('search-highlight');
                         setTimeout(function(c) { return function() { c.classList.remove('search-highlight'); }; }(scard),
                             1500);
                         subjectVisible++;
-                    } else { scard.style.display = 'none'; }
+                    } else scard.style.display = 'none';
                 }
-                if (noSubjectResults) { noSubjectResults.classList.toggle('visible', subjectVisible === 0); }
-                if (featuredVisible > 0 && featuredGrid) { featuredGrid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } else if (
-                    subjectVisible > 0 && subjectsGrid) { subjectsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                if (noSubjectResults) noSubjectResults.classList.toggle('visible', subjectVisible === 0);
+                if (featuredVisible > 0 && featuredGrid) featuredGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                else if (subjectVisible > 0 && subjectsGrid) subjectsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
             function resetSearch() {
@@ -2343,31 +2241,39 @@
                     allSubjects[j].classList.remove('search-highlight'); }
                 if (noFeaturedResults) noFeaturedResults.classList.remove('visible');
                 if (noSubjectResults) noSubjectResults.classList.remove('visible');
+                if (searchInput) searchInput.value = '';
             }
-            if (searchButton) { searchButton.addEventListener('click', performSearch); }
+            if (searchButton) searchButton.addEventListener('click', function() { performSearch(); });
             if (searchInput) {
-                searchInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { performSearch(); } });
-                searchInput.addEventListener('input', function() { if (!searchInput.value.trim()) { resetSearch(); } });
+                searchInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') performSearch(); });
+                searchInput.addEventListener('input', function() { if (!searchInput.value.trim()) resetSearch(); });
+            }
+            var suggestions = document.querySelectorAll('.search-suggestion');
+            for (var s = 0; s < suggestions.length; s++) {
+                suggestions[s].addEventListener('click', function() {
+                    var suggestion = this.getAttribute('data-suggestion') || '';
+                    performSearch(suggestion);
+                });
             }
             if ('IntersectionObserver' in window) {
-                var revealElements = document.querySelectorAll(
+                var revealEls = document.querySelectorAll(
                     '.featured-card, .subject-card, .exam-board-card, .resource-mini-card, .why-us-card, .testimonial, .timeline-item'
                     );
-                var revealObserver = new IntersectionObserver(function(entries) {
+                var observer = new IntersectionObserver(function(entries) {
                     for (var i = 0; i < entries.length; i++) {
                         if (entries[i].isIntersecting) {
                             entries[i].target.style.opacity = '1';
                             entries[i].target.style.transform = 'translateY(0)';
-                            revealObserver.unobserve(entries[i].target);
+                            observer.unobserve(entries[i].target);
                         }
                     }
                 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-                for (var r = 0; r < revealElements.length; r++) {
-                    var el = revealElements[r];
+                for (var r = 0; r < revealEls.length; r++) {
+                    var el = revealEls[r];
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(20px)';
                     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    revealObserver.observe(el);
+                    observer.observe(el);
                 }
             }
         })();

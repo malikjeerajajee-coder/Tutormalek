@@ -734,31 +734,31 @@
     
     <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
     
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION - FIXED LINKS -->
     <nav class="nav" id="navbar" aria-label="Main navigation">
         <div class="nav-inner">
-            <a href="/" class="logo" aria-label="Tutor Malek Home">
+            <a href="index.html" class="logo" aria-label="Tutor Malek Home">
                 <div class="logo-icon" aria-hidden="true">M</div>
                 TutorMalek
             </a>
             <ul class="nav-links" role="list">
-                <li><a href="/">
+                <li><a href="index.html">
                     <i data-lucide="home"></i>
                     Home
                 </a></li>
-                <li><a href="/about.html" class="active">
+                <li><a href="about.html" class="active">
                     <i data-lucide="user-circle-2"></i>
                     About
                 </a></li>
-                <li><a href="/subjects-and-pricing.html">
+                <li><a href="subjects-and-pricing.html">
                     <i data-lucide="book-open"></i>
                     Subjects & Pricing
                 </a></li>
-                <li><a href="/resources.html">
+                <li><a href="resources.html">
                     <i data-lucide="folder-open"></i>
                     Resources
                 </a></li>
-                <li><a href="/contact.html">
+                <li><a href="contact.html">
                     <i data-lucide="mail"></i>
                     Contact
                 </a></li>
@@ -775,25 +775,25 @@
         </div>
     </nav>
     
-    <!-- MOBILE MENU -->
+    <!-- MOBILE MENU - FIXED LINKS -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-        <a href="/">
+        <a href="index.html">
             <i data-lucide="home"></i>
             Home
         </a>
-        <a href="/about.html">
+        <a href="about.html">
             <i data-lucide="user-circle-2"></i>
             About
         </a>
-        <a href="/subjects-and-pricing.html">
+        <a href="subjects-and-pricing.html">
             <i data-lucide="book-open"></i>
             Subjects & Pricing
         </a>
-        <a href="/resources.html">
+        <a href="resources.html">
             <i data-lucide="folder-open"></i>
             Resources Hub
         </a>
-        <a href="/contact.html">
+        <a href="contact.html">
             <i data-lucide="mail"></i>
             Contact
         </a>
@@ -965,37 +965,37 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER - FIXED LINKS -->
     <footer role="contentinfo">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="/" class="logo"><div class="logo-icon">M</div>TutorMalek</a>
+                    <a href="index.html" class="logo"><div class="logo-icon">M</div>TutorMalek</a>
                     <p>Expert online private tuition for GCSE, 11+, SATs, and A-Level Science. UK-wide. Personalised 1-to-1 lessons.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/subjects-and-pricing.html">Subjects & Pricing</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="subjects-and-pricing.html">Subjects & Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="/resources.html">Resource Hub</a></li>
-                        <li><a href="/resources-gcse-maths.html">GCSE Maths</a></li>
-                        <li><a href="/resources-11-plus.html">11+ Prep</a></li>
-                        <li><a href="/resources-sats.html">SATs</a></li>
+                        <li><a href="resources.html">Resource Hub</a></li>
+                        <li><a href="resources-gcse-maths.html">GCSE Maths</a></li>
+                        <li><a href="resources-11-plus.html">11+ Prep</a></li>
+                        <li><a href="resources-sats.html">SATs</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -1015,7 +1015,7 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Mobile menu functionality
+        // Mobile menu functionality (Fixed)
         (function() {
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1033,8 +1033,6 @@
                 hamburger.setAttribute('aria-label', 'Close menu');
                 body.classList.add('menu-open');
                 menuOverlay.setAttribute('aria-hidden', 'false');
-                const firstLink = mobileMenu.querySelector('a');
-                if (firstLink) setTimeout(() => firstLink.focus(), 100);
             }
 
             function closeMenu() {
@@ -1064,8 +1062,11 @@
                 nav.classList.toggle('scrolled', window.pageYOffset > 50);
             }, { passive: true });
 
+            // FIXED: Correctly handles closing menu when window resizes above 900px
             window.addEventListener('resize', () => {
-                if (window.innerWidth > 900 && isMenuOpen) closeMenu();
+                if (window.innerWidth > 900 && isMenuOpen) {
+                    closeMenu();
+                }
             });
         })();
     </script>

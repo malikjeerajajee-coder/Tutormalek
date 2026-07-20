@@ -192,28 +192,28 @@
             flex-shrink: 0;
         }
         
-        /* Buttons */
+        /* Buttons - Fixed to match other pages */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 11px 22px;
-            border-radius: var(--r);
-            font-size: 14px;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: var(--r2);
+            font-size: 15px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             cursor: pointer;
             border: none;
-            line-height: 1;
+            line-height: 1.2;
             white-space: nowrap;
             font-family: inherit;
-            max-width: 100%;
+            min-height: 54px;
         }
         .btn .lucide {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
         }
         .btn-whatsapp {
@@ -223,7 +223,7 @@
         }
         .btn-whatsapp:hover {
             background: #20bd5a;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(37,211,102,0.35);
         }
         .btn-dark {
@@ -232,7 +232,7 @@
         }
         .btn-dark:hover {
             background: #27272a;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         .btn-outline {
@@ -247,6 +247,7 @@
         .btn-full {
             width: 100%;
             justify-content: center;
+            min-height: 54px;
         }
 
         /* Hamburger */
@@ -322,7 +323,7 @@
             padding-top: 20px;
             border-top: 1px solid var(--border);
         }
-        .mobile-menu .btn-whatsapp { width: 100%; justify-content: center; padding: 15px; font-size: 15px; }
+        .mobile-menu .btn-whatsapp { width: 100%; justify-content: center; padding: 16px; font-size: 15px; }
         
         .menu-overlay {
             position: fixed;
@@ -644,16 +645,20 @@
             word-break: break-word;
         }
 
-        /* CTA Box */
+        /* CTA Box - Fixed Button */
         .cta-box {
             background: var(--accent);
             border-radius: var(--r3);
-            padding: 60px 52px;
+            padding: 60px 40px;
             text-align: center;
             color: #fff;
             position: relative;
             overflow: hidden;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .cta-box::before {
             content: '';
@@ -668,8 +673,8 @@
         }
         .cta-box h2 { color: #fff; margin-bottom: 14px; position: relative; z-index: 1; }
         .cta-box p { color: rgba(255,255,255,0.7); font-size: 17px; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
-        .cta-box .btn { background: #fff; color: var(--text); position: relative; z-index: 1; font-weight: 700; }
-        .cta-box .btn:hover { background: #f0fdf4; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+        .cta-box .btn { background: #fff; color: var(--text); position: relative; z-index: 1; font-weight: 700; padding: 18px 36px; min-width: 240px; justify-content: center;}
+        .cta-box .btn:hover { background: #f0fdf4; transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
 
         /* FOOTER */
         footer {
@@ -761,7 +766,10 @@
             .container { padding: 0 20px; }
             section { padding: 60px 0; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-            .cta-box { padding: 44px 24px; }
+            .cta-box { padding: 40px 24px; }
+        }
+        @media (max-width: 600px) {
+            .cta-box .btn { min-width: 100%; width: 100%; padding: 16px 20px; white-space: normal; }
         }
         @media (max-width: 480px) {
             .resources-grid { grid-template-columns: 1fr; }
@@ -787,31 +795,31 @@
     
     <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
     
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION - FIXED FOR GITHUB -->
     <nav class="nav" id="navbar" aria-label="Main navigation">
         <div class="nav-inner">
-            <a href="/" class="logo" aria-label="Tutor Malek Home">
+            <a href="index.html" class="logo" aria-label="Tutor Malek Home">
                 <div class="logo-icon" aria-hidden="true">M</div>
                 TutorMalek
             </a>
             <ul class="nav-links" role="list">
-                <li><a href="/">
+                <li><a href="index.html">
                     <i data-lucide="home"></i>
                     Home
                 </a></li>
-                <li><a href="/about.html">
+                <li><a href="about.html">
                     <i data-lucide="user-circle-2"></i>
                     About
                 </a></li>
-                <li><a href="/subjects-and-pricing.html">
+                <li><a href="subjects-and-pricing.html">
                     <i data-lucide="book-open"></i>
                     Subjects & Pricing
                 </a></li>
-                <li><a href="/resources.html" class="active">
+                <li><a href="resources.html" class="active">
                     <i data-lucide="folder-open"></i>
                     Resources
                 </a></li>
-                <li><a href="/contact.html">
+                <li><a href="contact.html">
                     <i data-lucide="mail"></i>
                     Contact
                 </a></li>
@@ -828,25 +836,25 @@
         </div>
     </nav>
     
-    <!-- MOBILE MENU -->
+    <!-- MOBILE MENU - FIXED FOR GITHUB -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-        <a href="/">
+        <a href="index.html">
             <i data-lucide="home"></i>
             Home
         </a>
-        <a href="/about.html">
+        <a href="about.html">
             <i data-lucide="user-circle-2"></i>
             About
         </a>
-        <a href="/subjects-and-pricing.html">
+        <a href="subjects-and-pricing.html">
             <i data-lucide="book-open"></i>
             Subjects & Pricing
         </a>
-        <a href="/resources.html">
+        <a href="resources.html">
             <i data-lucide="folder-open"></i>
             Resources Hub
         </a>
-        <a href="/contact.html">
+        <a href="contact.html">
             <i data-lucide="mail"></i>
             Contact
         </a>
@@ -897,7 +905,7 @@
                             <span class="tag">PDF</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-past-papers.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Past Papers</a>
+                        <a href="resources-gcse-past-papers.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Past Papers</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="book-open"></i></div>
@@ -907,7 +915,7 @@
                             <span class="tag">PDF</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-revision-notes.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Notes</a>
+                        <a href="resources-gcse-revision-notes.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Notes</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="layout-grid"></i></div>
@@ -917,7 +925,7 @@
                             <span class="tag">PDF</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-worksheets.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Worksheets</a>
+                        <a href="resources-gcse-worksheets.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Worksheets</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="target"></i></div>
@@ -927,7 +935,7 @@
                             <span class="tag">PDF</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-topic-questions.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Questions</a>
+                        <a href="resources-gcse-topic-questions.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Questions</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="layers"></i></div>
@@ -937,7 +945,7 @@
                             <span class="tag">PDF</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-flashcards.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Flashcards</a>
+                        <a href="resources-gcse-flashcards.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Flashcards</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="help-circle"></i></div>
@@ -947,7 +955,7 @@
                             <span class="tag">Interactive</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-quizzes.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">Start Quiz</a>
+                        <a href="resources-gcse-quizzes.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">Start Quiz</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="award"></i></div>
@@ -957,7 +965,7 @@
                             <span class="tag">Guide</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-exam-technique.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Guide</a>
+                        <a href="resources-gcse-exam-technique.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Guide</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="check-square"></i></div>
@@ -967,7 +975,7 @@
                             <span class="tag">PDF</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-model-answers.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Answers</a>
+                        <a href="resources-gcse-model-answers.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Answers</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="trending-up"></i></div>
@@ -977,7 +985,7 @@
                             <span class="tag">PDF</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-predicted-papers.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Predictions</a>
+                        <a href="resources-gcse-predicted-papers.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Predictions</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon"><i data-lucide="hash"></i></div>
@@ -987,7 +995,7 @@
                             <span class="tag">PDF</span>
                             <span class="tag highlight">Free</span>
                         </div>
-                        <a href="/resources-gcse-formula-sheets.html" class="btn btn-dark btn-full" style="font-size:13px;padding:8px 16px;">View Formulas</a>
+                        <a href="resources-gcse-formula-sheets.html" class="btn btn-dark btn-full" style="font-size:14px;padding:12px 16px;">View Formulas</a>
                     </div>
                 </div>
             </div>
@@ -1023,9 +1031,9 @@
                         <h3>GCSE Maths Resources</h3>
                         <p>From algebraic fractions to vector proofs, our GCSE Maths resources cover every topic on the Foundation and Higher tier syllabuses. Download topic-based worksheets, formula sheets, and predicted papers tailored to AQA, Edexcel and OCR.</p>
                         <div class="subject-links">
-                            <a href="/resources-gcse-maths.html">Maths Past Papers</a>
-                            <a href="/resources-gcse-maths.html">Maths Worksheets</a>
-                            <a href="/resources-gcse-maths.html">Formula Sheet</a>
+                            <a href="resources-gcse-maths.html">Maths Past Papers</a>
+                            <a href="resources-gcse-maths.html">Maths Worksheets</a>
+                            <a href="resources-gcse-maths.html">Formula Sheet</a>
                         </div>
                     </div>
                 </div>
@@ -1035,9 +1043,9 @@
                         <h3>GCSE Biology Resources</h3>
                         <p>Cell biology, organisation, infection and response, bioenergetics, homeostasis, inheritance, and ecology. Resources include diagram-based flashcards, past paper questions by topic, and model answers for long-response questions.</p>
                         <div class="subject-links">
-                            <a href="/resources-gcse-science.html">Biology Past Papers</a>
-                            <a href="/resources-gcse-science.html">Revision Notes</a>
-                            <a href="/resources-gcse-science.html">Flashcards</a>
+                            <a href="resources-gcse-science.html">Biology Past Papers</a>
+                            <a href="resources-gcse-science.html">Revision Notes</a>
+                            <a href="resources-gcse-science.html">Flashcards</a>
                         </div>
                     </div>
                 </div>
@@ -1047,9 +1055,9 @@
                         <h3>GCSE Chemistry Resources</h3>
                         <p>Atomic structure, periodic table, quantitative chemistry, chemical changes, energy changes, organic chemistry. Resources include equation worksheets, mole calculation practice, and required practical guides.</p>
                         <div class="subject-links">
-                            <a href="/resources-gcse-science.html">Chemistry Past Papers</a>
-                            <a href="/resources-gcse-science.html">Equation Sheets</a>
-                            <a href="/resources-gcse-science.html">Practical Guides</a>
+                            <a href="resources-gcse-science.html">Chemistry Past Papers</a>
+                            <a href="resources-gcse-science.html">Equation Sheets</a>
+                            <a href="resources-gcse-science.html">Practical Guides</a>
                         </div>
                     </div>
                 </div>
@@ -1059,9 +1067,9 @@
                         <h3>GCSE Physics Resources</h3>
                         <p>Forces, energy, waves, electricity, magnetism, and particle model of matter. Download formula sheets, calculation worksheets, and past paper walkthroughs with step-by-step solutions.</p>
                         <div class="subject-links">
-                            <a href="/resources-gcse-science.html">Physics Past Papers</a>
-                            <a href="/resources-gcse-science.html">Formula Sheet</a>
-                            <a href="/resources-gcse-science.html">Calculation Practice</a>
+                            <a href="resources-gcse-science.html">Physics Past Papers</a>
+                            <a href="resources-gcse-science.html">Formula Sheet</a>
+                            <a href="resources-gcse-science.html">Calculation Practice</a>
                         </div>
                     </div>
                 </div>
@@ -1071,9 +1079,9 @@
                         <h3>GCSE English Resources</h3>
                         <p>SPaG revision guides, creative writing exemplars, literature essay plans, and language paper techniques. Includes model answers for both Language and Literature papers.</p>
                         <div class="subject-links">
-                            <a href="/resources-gcse-english.html">English Past Papers</a>
-                            <a href="/resources-gcse-english.html">SPaG Guides</a>
-                            <a href="/resources-gcse-english.html">Essay Exemplars</a>
+                            <a href="resources-gcse-english.html">English Past Papers</a>
+                            <a href="resources-gcse-english.html">SPaG Guides</a>
+                            <a href="resources-gcse-english.html">Essay Exemplars</a>
                         </div>
                     </div>
                 </div>
@@ -1142,13 +1150,13 @@
             </div>
         </section>
 
-        <!-- CTA -->
+        <!-- CTA - FIXED BUTTON -->
         <section>
             <div class="container">
                 <div class="cta-box">
                     <h2>Need help using these resources?</h2>
                     <p>Sometimes the best resource is a tutor who can explain exactly how to use them. Book a free assessment chat and I'll build a revision plan around these materials.</p>
-                    <a href="https://wa.me/923379244731" class="btn btn-xl" rel="noopener">
+                    <a href="https://wa.me/923379244731" class="btn btn-xl" rel="noopener" style="display: inline-flex;">
                         <i data-lucide="message-circle"></i>
                         Message on WhatsApp
                     </a>
@@ -1157,37 +1165,37 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER - FIXED FOR GITHUB -->
     <footer role="contentinfo">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="/" class="logo"><div class="logo-icon">M</div>TutorMalek</a>
+                    <a href="index.html" class="logo"><div class="logo-icon">M</div>TutorMalek</a>
                     <p>Expert online private tuition for GCSE, 11+, SATs, and A-Level Science. UK-wide. Personalised 1-to-1 lessons.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/subjects-and-pricing.html">Subjects & Pricing</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="subjects-and-pricing.html">Subjects & Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="/resources.html">Resource Hub</a></li>
-                        <li><a href="/resources-gcse.html">GCSE Resources</a></li>
-                        <li><a href="/resources-gcse-maths.html">GCSE Maths</a></li>
-                        <li><a href="/resources-gcse-science.html">GCSE Science</a></li>
+                        <li><a href="resources.html">Resource Hub</a></li>
+                        <li><a href="resources-gcse.html">GCSE Resources</a></li>
+                        <li><a href="resources-gcse-maths.html">GCSE Maths</a></li>
+                        <li><a href="resources-gcse-science.html">GCSE Science</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -1207,7 +1215,7 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Mobile menu functionality
+        // Mobile menu functionality (Fixed)
         (function() {
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1225,8 +1233,6 @@
                 hamburger.setAttribute('aria-label', 'Close menu');
                 body.classList.add('menu-open');
                 menuOverlay.setAttribute('aria-hidden', 'false');
-                const firstLink = mobileMenu.querySelector('a');
-                if (firstLink) setTimeout(() => firstLink.focus(), 100);
             }
 
             function closeMenu() {
@@ -1256,8 +1262,11 @@
                 nav.classList.toggle('scrolled', window.pageYOffset > 50);
             }, { passive: true });
 
+            // Fixes menu closing on window resize
             window.addEventListener('resize', () => {
-                if (window.innerWidth > 900 && isMenuOpen) closeMenu();
+                if (window.innerWidth > 900 && isMenuOpen) {
+                    closeMenu();
+                }
             });
         })();
     </script>

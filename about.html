@@ -698,7 +698,7 @@
         .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
         @keyframes wa-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - Adjusted font sizes for mobile */
         @media (max-width: 1024px) {
             .nav-links { gap: 0; }
             .nav-links a { padding: 8px 10px; font-size: 12px; }
@@ -714,9 +714,34 @@
             .boards-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
             .cta-box { padding: 40px 24px; }
+            /* Mobile-specific font size adjustments */
+            .page-hero h1 { font-size: clamp(32px, 5vw, 40px); }
+            .page-hero p { font-size: 16px; }
+            h2 { font-size: clamp(24px, 4vw, 32px); }
+            .sec-desc { font-size: 16px; }
+            .about-text { font-size: 15px; }
+            .timeline-content h3 { font-size: 17px; }
+            .timeline-content p { font-size: 13px; }
+            .philosophy-card h3 { font-size: 17px; }
+            .philosophy-card p { font-size: 13px; }
+            .board-item { font-size: 14px; }
+            .testimonial p { font-size: 13px; }
+            .cta-box h2 { font-size: clamp(24px, 5vw, 32px); }
+            .cta-box p { font-size: 15px; }
         }
         @media (max-width: 600px) {
             .cta-box .btn { min-width: 100%; width: 100%; padding: 16px 20px; white-space: normal; }
+            /* Additional mobile adjustments */
+            .page-hero h1 { font-size: clamp(28px, 5vw, 36px); }
+            .about-text { font-size: 14px; }
+            .about-list li { font-size: 14px; }
+            .timeline-date { font-size: 12px; }
+            .philosophy-card { padding: 28px 24px; }
+            .philosophy-card h3 { font-size: 16px; }
+            .philosophy-card p { font-size: 13px; }
+            .testimonial { padding: 24px; }
+            .author strong { font-size: 12px; }
+            .author span { font-size: 11px; }
         }
         @media (max-width: 480px) {
             .boards-grid { grid-template-columns: 1fr; }
@@ -724,6 +749,24 @@
             .wa-float { width: 52px; height: 52px; bottom: 20px; right: 20px; }
             .wa-float .lucide { width: 28px; height: 28px; }
             .wa-tooltip { display: none; }
+            /* Extra-small mobile adjustments */
+            .page-hero { padding: 90px 0 40px; }
+            .page-hero h1 { font-size: clamp(24px, 5vw, 32px); }
+            .page-hero p { font-size: 15px; }
+            h2 { font-size: clamp(20px, 4vw, 28px); }
+            .sec-desc { font-size: 15px; }
+            .about-text { font-size: 14px; }
+            .timeline-content { padding: 20px 24px; }
+            .timeline-content h3 { font-size: 16px; }
+            .philosophy-card { padding: 24px 20px; }
+            .philosophy-card h3 { font-size: 15px; }
+            .board-item { padding: 16px; font-size: 13px; }
+            .testimonial { padding: 20px; }
+            .testimonial p { font-size: 12px; }
+            .author-avatar { width: 36px; height: 36px; font-size: 12px; }
+            .cta-box { padding: 32px 20px; }
+            .cta-box h2 { font-size: clamp(20px, 5vw, 26px); }
+            .cta-box p { font-size: 14px; }
         }
         @media (prefers-reduced-motion: reduce) {
             *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }

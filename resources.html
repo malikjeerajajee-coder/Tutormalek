@@ -714,7 +714,7 @@
         .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
         @keyframes wa-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - Adjusted font sizes for mobile */
         @media (max-width: 1024px) {
             .nav-links { gap: 0; }
             .nav-links a { padding: 8px 10px; font-size: 12px; }
@@ -728,9 +728,38 @@
             section { padding: 60px 0; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
             .cta-box { padding: 40px 24px; }
+            /* Mobile-specific font size adjustments */
+            .page-hero h1 { font-size: clamp(32px, 5vw, 40px); }
+            .page-hero p { font-size: 16px; }
+            h2 { font-size: clamp(24px, 4vw, 32px); }
+            .sec-desc { font-size: 16px; }
+            .seo-intro p { font-size: 15px; }
+            .resource-category-card h3 { font-size: 17px; }
+            .resource-category-card p { font-size: 13px; }
+            .category-link { font-size: 13px; }
+            .why-item h3 { font-size: 15px; }
+            .why-item p { font-size: 13px; }
+            .testimonial-card p { font-size: 13px; }
+            .testimonial-author strong { font-size: 12px; }
+            .testimonial-author span { font-size: 11px; }
+            .faq-answer { font-size: 14px; }
         }
         @media (max-width: 600px) {
             .cta-box .btn { min-width: 100%; width: 100%; padding: 16px 20px; white-space: normal; }
+            /* Additional mobile adjustments */
+            .page-hero h1 { font-size: clamp(28px, 5vw, 36px); }
+            .resource-category-card { padding: 32px 24px; }
+            .category-icon { width: 60px; height: 60px; }
+            .category-icon .lucide { width: 26px; height: 26px; }
+            .resource-category-card h3 { font-size: 16px; }
+            .resource-category-card p { font-size: 12px; }
+            .category-link { font-size: 12px; }
+            .why-item { padding: 20px; }
+            .why-item h3 { font-size: 14px; }
+            .why-item p { font-size: 12px; }
+            .testimonial-card { padding: 24px; }
+            .testimonial-card p { font-size: 12px; }
+            .author-avatar { width: 36px; height: 36px; font-size: 12px; }
         }
         @media (max-width: 480px) {
             .resources-grid { grid-template-columns: 1fr; }
@@ -745,6 +774,26 @@
             .wa-tooltip { display: none; }
             h2 { font-size: 26px; }
             .sec-desc { font-size: 15px; margin-bottom: 36px; }
+            /* Extra-small mobile adjustments */
+            .page-hero h1 { font-size: clamp(24px, 5vw, 30px); }
+            .page-hero p { font-size: 14px; }
+            h2 { font-size: clamp(20px, 4vw, 24px); }
+            .sec-desc { font-size: 14px; }
+            .seo-intro p { font-size: 14px; }
+            .resource-category-card { padding: 28px 20px; }
+            .category-icon { width: 56px; height: 56px; }
+            .category-icon .lucide { width: 24px; height: 24px; }
+            .resource-category-card h3 { font-size: 15px; }
+            .resource-category-card p { font-size: 11px; }
+            .category-link { font-size: 11px; }
+            .why-item { padding: 18px; }
+            .why-item h3 { font-size: 13px; }
+            .why-item p { font-size: 11px; }
+            .testimonial-card { padding: 20px; }
+            .testimonial-card p { font-size: 11px; }
+            .testimonial-author strong { font-size: 11px; }
+            .testimonial-author span { font-size: 10px; }
+            .faq-answer { font-size: 13px; }
         }
         @media (prefers-reduced-motion: reduce) {
             *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }

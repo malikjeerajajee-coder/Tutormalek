@@ -730,7 +730,7 @@
         .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
         @keyframes wa-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - Adjusted font sizes for mobile */
         @media (max-width: 1024px) {
             .nav-links { gap: 0; }
             .nav-links a { padding: 8px 10px; font-size: 12px; }
@@ -753,15 +753,42 @@
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
             .container { padding: 0 20px; }
             section { padding: 60px 0; }
+            /* Mobile-specific font size adjustments */
+            .page-hero h1 { font-size: clamp(32px, 5vw, 40px); }
+            .page-hero p { font-size: 16px; }
+            h2 { font-size: clamp(24px, 4vw, 32px); }
+            .sec-desc { font-size: 16px; }
+            .contact-method div strong { font-size: 14px; }
+            .contact-method div span { font-size: 12px; }
+            .response-item .time { font-size: 18px; }
+            .response-item .channel { font-size: 10px; }
+            .form-card h2 { font-size: 22px; }
+            .form-card > p { font-size: 13px; }
+            .form-group label { font-size: 12px; }
+            .form-group input,
+            .form-group select,
+            .form-group textarea { font-size: 13px; }
+            .form-group textarea { min-height: 100px; }
+            .form-note { font-size: 11px; }
+            .faq-answer { font-size: 14px; }
         }
         @media (max-width: 600px) {
             .btn-full { white-space: normal; padding: 16px 20px; }
+            /* Additional mobile adjustments */
+            .page-hero h1 { font-size: clamp(28px, 5vw, 36px); }
+            .contact-method { gap: 14px; }
+            .contact-icon { width: 46px; height: 46px; }
+            .contact-icon .lucide { width: 20px; height: 20px; }
+            .response-times { grid-template-columns: 1fr; }
+            .privacy-note { padding: 14px; font-size: 12px; }
+            .form-card { padding: 24px 20px; }
+            .form-group { margin-bottom: 16px; }
+            .form-row { gap: 12px; }
         }
         @media (max-width: 480px) {
-            .response-times { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
             .form-card { 
-                padding: 24px 18px; 
+                padding: 20px 16px; 
                 border-radius: var(--r2);
             }
             .container { padding: 0 16px; }
@@ -770,11 +797,26 @@
             .wa-float { width: 52px; height: 52px; bottom: 20px; right: 20px; }
             .wa-float .lucide { width: 28px; height: 28px; }
             .wa-tooltip { display: none; }
-            .contact-method { gap: 14px; }
-            .contact-method div strong { font-size: 14px; }
-            .contact-method div span { font-size: 12px; }
+            .contact-method { gap: 12px; }
+            .contact-method div strong { font-size: 13px; }
+            .contact-method div span { font-size: 11px; }
             h2 { font-size: 26px; }
             .sec-desc { font-size: 15px; margin-bottom: 36px; }
+            /* Extra-small mobile adjustments */
+            .page-hero h1 { font-size: clamp(24px, 5vw, 30px); }
+            .page-hero p { font-size: 14px; }
+            h2 { font-size: clamp(20px, 4vw, 24px); }
+            .sec-desc { font-size: 14px; }
+            .contact-method div strong { font-size: 12px; }
+            .contact-method div span { font-size: 10px; }
+            .response-item .time { font-size: 16px; }
+            .form-card h2 { font-size: 20px; }
+            .form-card > p { font-size: 12px; }
+            .form-group label { font-size: 11px; }
+            .form-group input,
+            .form-group select,
+            .form-group textarea { font-size: 12px; }
+            .faq-answer { font-size: 13px; }
         }
         @media (prefers-reduced-motion: reduce) {
             *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }

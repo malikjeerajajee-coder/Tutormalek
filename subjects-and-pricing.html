@@ -656,7 +656,7 @@
         .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
         @keyframes wa-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - Adjusted font sizes for mobile */
         @media (max-width: 1024px) {
             .nav-links { gap: 0; }
             .nav-links a { padding: 8px 10px; font-size: 12px; }
@@ -672,21 +672,58 @@
             section { padding: 60px 0; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
             .cta-box { padding: 44px 24px; }
+            /* Mobile-specific font size adjustments */
+            .page-hero h1 { font-size: clamp(32px, 5vw, 40px); }
+            .page-hero p { font-size: 16px; }
+            h2 { font-size: clamp(24px, 4vw, 32px); }
+            .sec-desc { font-size: 16px; }
+            .subject-card h3 { font-size: 16px; }
+            .subject-card p { font-size: 13px; }
+            .tag { font-size: 10px; }
+            .price { font-size: 42px; }
+            .price span { font-size: 14px; }
+            .price-card h3 { font-size: 17px; }
+            .price-features li { font-size: 13px; }
+            .faq-answer { font-size: 14px; }
         }
         @media (max-width: 600px) {
             .cta-box .btn { min-width: 100%; width: 100%; padding: 16px 20px; white-space: normal; }
+            /* Additional mobile adjustments */
+            .page-hero h1 { font-size: clamp(28px, 5vw, 36px); }
+            .subject-card { padding: 28px 24px; }
+            .subject-icon { width: 44px; height: 44px; }
+            .subject-icon .lucide { width: 22px; height: 22px; }
+            .subject-card h3 { font-size: 15px; }
+            .subject-card p { font-size: 12px; }
+            .tag { padding: 4px 10px; font-size: 10px; }
+            .price-card { padding: 32px 24px; }
+            .price { font-size: 38px; }
+            .price-features li { padding: 8px 0; font-size: 12px; }
         }
         @media (max-width: 480px) {
             .footer-grid { grid-template-columns: 1fr; }
             .container { padding: 0 16px; }
             .page-hero { padding: 100px 0 40px; }
             .page-hero h1 { font-size: 32px; }
-            .price { font-size: 42px; }
             .wa-float { width: 52px; height: 52px; bottom: 20px; right: 20px; }
             .wa-float .lucide { width: 28px; height: 28px; }
             .wa-tooltip { display: none; }
             h2 { font-size: 26px; }
             .sec-desc { font-size: 15px; margin-bottom: 36px; }
+            /* Extra-small mobile adjustments */
+            .page-hero h1 { font-size: clamp(24px, 5vw, 30px); }
+            .page-hero p { font-size: 14px; }
+            h2 { font-size: clamp(20px, 4vw, 24px); }
+            .sec-desc { font-size: 14px; }
+            .subject-card { padding: 24px 20px; }
+            .subject-card h3 { font-size: 14px; }
+            .subject-card p { font-size: 11px; }
+            .tag { font-size: 9px; }
+            .price { font-size: 32px; }
+            .price span { font-size: 12px; }
+            .price-card h3 { font-size: 16px; }
+            .price-features li { font-size: 11px; }
+            .faq-answer { font-size: 13px; }
         }
         @media (prefers-reduced-motion: reduce) {
             *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }

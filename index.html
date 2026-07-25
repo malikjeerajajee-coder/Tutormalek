@@ -11,7 +11,7 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://tutormalik.uk/">
     
-    <!-- Open Graph -->
+    <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Tutor Malek">
     <meta property="og:title" content="GCSE, A-Level & 11+ Private Tutor UK | Online Tuition From £8">
@@ -20,17 +20,96 @@
     <meta property="og:image" content="https://tutormalik.uk/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GCSE, A-Level & 11+ Private Tutor UK | Online Tuition From £8">
+    <meta name="twitter:description" content="Expert 1-to-1 online private tuition for GCSE, A-Level & 11+. UK-wide. From £8/session.">
+    <meta name="twitter:image" content="https://tutormalik.uk/og-image.png">
     
-    <!-- Favicon -->
+    <!-- Geo & Robots -->
+    <meta name="geo.region" content="GB">
+    <meta name="geo.placename" content="United Kingdom">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- Structured Data: LocalBusiness / Tutor -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOccupationalCredential",
+      "name": "Tutor Malek - Private Online Tuition",
+      "description": "Expert private online tutor for GCSE, A-Level & 11+ in Maths, Biology, Chemistry, Physics & English. UK-wide 1-to-1 lessons from £8/session.",
+      "provider": {
+        "@type": "Person",
+        "name": "Malek",
+        "jobTitle": "Private Online Tutor",
+        "url": "https://tutormalik.uk",
+        "sameAs": ["https://wa.me/923379244731"],
+        "image": "https://tutormalik.uk/og-image.png"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tuition Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "11+ & SATs Private Tuition",
+              "description": "60-minute 1-to-1 lesson for 11+ and SATs preparation"
+            },
+            "price": "8.00",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "8.00",
+              "priceCurrency": "GBP",
+              "unitText": "session"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "GCSE Private Tuition",
+              "description": "60-minute 1-to-1 lesson for GCSE Maths & Science"
+            },
+            "price": "10.00",
+            "priceCurrency": "GBP"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "A-Level Private Tuition",
+              "description": "60-minute 1-to-1 lesson for A-Level Sciences"
+            },
+            "price": "12.00",
+            "priceCurrency": "GBP"
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "127",
+        "bestRating": "5"
+      }
+    }
+    </script>
+    
+    <!-- Favicon (inline SVG for speed) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2318181b'/><text x='50' y='68' text-anchor='middle' fill='white' font-size='55' font-weight='800' font-family='system-ui'>M</text></svg>">
     
-    <!-- Fonts -->
+    <!-- Fonts (preconnect to reduce connection time) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons (deferred) -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     
     <style>
         :root {
@@ -94,6 +173,7 @@
             font-weight: 600;
             font-size: 13px;
             transition: top 0.3s;
+            text-decoration: none;
         }
         .skip-link:focus { top: 12px; }
 
@@ -110,6 +190,7 @@
             z-index: 100;
             height: var(--nav-height);
             transition: box-shadow 0.3s;
+            will-change: box-shadow;
         }
         .nav.scrolled { box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
         
@@ -296,6 +377,7 @@
             display: flex;
             flex-direction: column;
             gap: 2px;
+            will-change: right;
         }
         .mobile-menu.open { right: 0; }
         .mobile-menu a {
@@ -968,7 +1050,7 @@
                 TutorMalek
             </a>
             <ul class="nav-links" role="list">
-                <li><a href="index.html" class="active">
+                <li><a href="index.html" class="active" aria-current="page">
                     <i data-lucide="home"></i>
                     Home
                 </a></li>
@@ -990,7 +1072,7 @@
                 </a></li>
             </ul>
             <div class="nav-cta">
-                <a href="https://wa.me/923379244731" class="btn btn-whatsapp" rel="noopener">
+                <a href="https://wa.me/923379244731" class="btn btn-whatsapp" rel="noopener noreferrer" aria-label="Book now via WhatsApp">
                     <i data-lucide="message-circle"></i>
                     Book Now
                 </a>
@@ -1024,7 +1106,7 @@
             Contact
         </a>
         <div class="mobile-cta">
-            <a href="https://wa.me/923379244731" class="btn btn-whatsapp" rel="noopener">
+            <a href="https://wa.me/923379244731" class="btn btn-whatsapp" rel="noopener noreferrer">
                 <i data-lucide="message-circle"></i>
                 Book via WhatsApp
             </a>
@@ -1044,7 +1126,7 @@
                         <h1 id="hero-heading">Expert <em>private online tutoring</em> for GCSE, 11+ &amp; A‑Level</h1>
                         <p>Personalised 1‑to‑1 lessons in <strong>Maths, Biology, Chemistry, Physics &amp; English Grammar</strong>. Trusted by parents across England, Scotland, Wales &amp; Northern Ireland. From just <strong>£8 per session</strong>.</p>
                         <div class="hero-actions">
-                            <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-lg" rel="noopener">
+                            <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-lg" rel="noopener noreferrer">
                                 <i data-lucide="message-circle"></i>
                                 Chat on WhatsApp
                             </a>
@@ -1211,7 +1293,7 @@
                             <li><i data-lucide="check-circle-2"></i> Practice papers & homework</li>
                             <li><i data-lucide="check-circle-2"></i> Progress tracking</li>
                         </ul>
-                        <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-full-width" rel="noopener">
+                        <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-full-width" rel="noopener noreferrer">
                             <i data-lucide="message-circle"></i>
                             Book Now
                         </a>
@@ -1226,7 +1308,7 @@
                             <li><i data-lucide="check-circle-2"></i> Past paper walkthroughs</li>
                             <li><i data-lucide="check-circle-2"></i> Weekly progress reports</li>
                         </ul>
-                        <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-full-width" rel="noopener">
+                        <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-full-width" rel="noopener noreferrer">
                             <i data-lucide="message-circle"></i>
                             Book Now
                         </a>
@@ -1240,7 +1322,7 @@
                             <li><i data-lucide="check-circle-2"></i> Past paper & mark scheme analysis</li>
                             <li><i data-lucide="check-circle-2"></i> Detailed progress feedback</li>
                         </ul>
-                        <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-full-width" rel="noopener">
+                        <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-full-width" rel="noopener noreferrer">
                             <i data-lucide="message-circle"></i>
                             Book Now
                         </a>
@@ -1270,7 +1352,7 @@
                             <li><i data-lucide="check-circle-2"></i> All exam boards covered</li>
                             <li><i data-lucide="check-circle-2"></i> Flexible online scheduling</li>
                         </ul>
-                        <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-lg" rel="noopener">
+                        <a href="https://wa.me/923379244731" class="btn btn-whatsapp btn-lg" rel="noopener noreferrer">
                             <i data-lucide="message-circle"></i>
                             Start a Conversation
                         </a>
@@ -1346,7 +1428,7 @@
                 <div class="cta-box">
                     <h2>Ready to help your child succeed?</h2>
                     <p>Message me on WhatsApp with your child's year group and subjects. I'll respond within hours with a recommended plan.</p>
-                    <a href="https://wa.me/923379244731" class="btn btn-xl" rel="noopener" style="display: inline-flex;">
+                    <a href="https://wa.me/923379244731" class="btn btn-xl" rel="noopener noreferrer" style="display: inline-flex;">
                         <i data-lucide="message-circle"></i>
                         Message on WhatsApp
                     </a>
@@ -1396,16 +1478,20 @@
     </footer>
 
     <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/923379244731" class="wa-float" aria-label="Chat on WhatsApp" rel="noopener">
+    <a href="https://wa.me/923379244731" class="wa-float" aria-label="Chat on WhatsApp" rel="noopener noreferrer">
         <i data-lucide="message-circle"></i>
         <span class="wa-tooltip">Chat on WhatsApp</span>
     </a>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Initialize Lucide icons after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
 
-        // Mobile menu functionality
+        // Mobile menu functionality (optimized)
         (function() {
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1434,6 +1520,7 @@
                 hamburger.setAttribute('aria-label', 'Open menu');
                 body.classList.remove('menu-open');
                 menuOverlay.setAttribute('aria-hidden', 'true');
+                // Return focus to hamburger
                 hamburger.focus();
             }
 
@@ -1448,10 +1535,12 @@
                 if (e.key === 'Escape' && isMenuOpen) closeMenu();
             });
 
+            // Passive scroll listener for nav shadow
             window.addEventListener('scroll', () => {
                 nav.classList.toggle('scrolled', window.pageYOffset > 50);
             }, { passive: true });
 
+            // Close menu on resize if desktop breakpoint reached
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 900 && isMenuOpen) {
                     closeMenu();

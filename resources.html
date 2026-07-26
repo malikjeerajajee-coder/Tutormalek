@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     
     <!-- Primary SEO -->
     <title>Free Revision Resources | GCSE, A-Level, 11+, SATs & KS3 — Tutor Malek</title>
@@ -11,7 +11,7 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://tutormalik.uk/resources.html">
     
-    <!-- Open Graph -->
+    <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Tutor Malek">
     <meta property="og:title" content="Free Revision Resources | GCSE, A-Level, 11+, SATs & KS3 — Tutor Malek">
@@ -20,17 +20,85 @@
     <meta property="og:image" content="https://tutormalik.uk/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Revision Resources | GCSE, A-Level, 11+, SATs & KS3 — Tutor Malek">
+    <meta name="twitter:description" content="Get expert-verified, free GCSE, A-Level, 11+, and SATs revision resources. Download instantly — no sign-up needed.">
+    <meta name="twitter:image" content="https://tutormalik.uk/og-image.png">
     
-    <!-- Favicon -->
+    <!-- Geo & Robots -->
+    <meta name="geo.region" content="GB">
+    <meta name="geo.placename" content="United Kingdom">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- Structured Data: CollectionPage / EducationalResource -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Free Revision Resources | GCSE, A-Level, 11+, SATs & KS3",
+      "description": "Expert-verified, free GCSE, A-Level, 11+, and SATs revision resources. Study guides, checklists, and practice materials. Download instantly — no sign-up needed.",
+      "url": "https://tutormalik.uk/resources.html",
+      "provider": {
+        "@type": "Person",
+        "name": "Tutor Malek",
+        "jobTitle": "Private Online Tutor",
+        "url": "https://tutormalik.uk"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Free Educational Resources",
+        "description": "Revision materials for GCSE, A-Level, 11+, SATs, and KS3 covering Maths, Biology, Chemistry, Physics, and English Grammar"
+      },
+      "hasPart": [
+        {
+          "@type": "WebPage",
+          "name": "GCSE Resources",
+          "url": "https://tutormalik.uk/resources-gcse.html",
+          "description": "GCSE Maths, Biology, Chemistry, Physics & English Grammar revision materials"
+        },
+        {
+          "@type": "WebPage",
+          "name": "A-Level Resources",
+          "url": "https://tutormalik.uk/resources-a-level.html",
+          "description": "A-Level Physics, Biology, and Chemistry revision guides and exam technique tips"
+        },
+        {
+          "@type": "WebPage",
+          "name": "SATs Resources",
+          "url": "https://tutormalik.uk/resources-sats.html",
+          "description": "Year 6 KS2 Maths, Reading, SPaG, and comprehension practice materials"
+        },
+        {
+          "@type": "WebPage",
+          "name": "11+ Resources",
+          "url": "https://tutormalik.uk/resources-11-plus.html",
+          "description": "GL, CEM, CSSE, and independent school 11+ preparation materials"
+        },
+        {
+          "@type": "WebPage",
+          "name": "KS3 Resources",
+          "url": "https://tutormalik.uk/resources-ks3.html",
+          "description": "Year 7, 8 & 9 foundation-building Maths and Science materials"
+        }
+      ],
+      "educationalLevel": ["GCSE", "A-Level", "11+", "SATs", "KS3"],
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": ["student", "parent"]
+      }
+    }
+    </script>
+    
+    <!-- Favicon (inline SVG for speed) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2318181b'/><text x='50' y='68' text-anchor='middle' fill='white' font-size='55' font-weight='800' font-family='system-ui'>M</text></svg>">
     
-    <!-- Fonts -->
+    <!-- Fonts (preconnect) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons (deferred to prevent render-blocking) -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     
     <style>
         :root {
@@ -62,6 +130,8 @@
             scroll-padding-top: var(--nav-height);
             overflow-x: hidden;
             width: 100%;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
         }
         
         body {
@@ -97,6 +167,7 @@
             font-weight: 600;
             font-size: 14px;
             transition: top 0.3s;
+            text-decoration: none;
         }
         .skip-link:focus { top: 16px; }
 
@@ -115,6 +186,7 @@
             transition: box-shadow 0.3s;
             width: 100%;
             max-width: 100vw;
+            will-change: box-shadow;
         }
         .nav.scrolled { box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
         
@@ -192,7 +264,7 @@
             flex-shrink: 0;
         }
         
-        /* Buttons - Fixed to match other pages */
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -286,6 +358,7 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
+            will-change: right;
         }
         .mobile-menu.open { right: 0; }
         .mobile-menu a {
@@ -611,7 +684,7 @@
             word-break: break-word;
         }
 
-        /* CTA Box - Fixed Button */
+        /* CTA Box */
         .cta-box {
             background: var(--accent);
             border-radius: var(--r3);
@@ -714,7 +787,7 @@
         .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
         @keyframes wa-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-        /* RESPONSIVE - Adjusted font sizes for mobile */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .nav-links { gap: 0; }
             .nav-links a { padding: 8px 10px; font-size: 12px; }
@@ -728,7 +801,6 @@
             section { padding: 60px 0; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
             .cta-box { padding: 40px 24px; }
-            /* Mobile-specific font size adjustments */
             .page-hero h1 { font-size: clamp(32px, 5vw, 40px); }
             .page-hero p { font-size: 16px; }
             h2 { font-size: clamp(24px, 4vw, 32px); }
@@ -746,7 +818,6 @@
         }
         @media (max-width: 600px) {
             .cta-box .btn { min-width: 100%; width: 100%; padding: 16px 20px; white-space: normal; }
-            /* Additional mobile adjustments */
             .page-hero h1 { font-size: clamp(28px, 5vw, 36px); }
             .resource-category-card { padding: 32px 24px; }
             .category-icon { width: 60px; height: 60px; }
@@ -768,17 +839,13 @@
             .footer-grid { grid-template-columns: 1fr; }
             .container { padding: 0 16px; }
             .page-hero { padding: 100px 0 40px; }
-            .page-hero h1 { font-size: 32px; }
+            .page-hero h1 { font-size: clamp(24px, 5vw, 30px); }
+            .page-hero p { font-size: 14px; }
             .wa-float { width: 52px; height: 52px; bottom: 20px; right: 20px; }
             .wa-float .lucide { width: 28px; height: 28px; }
             .wa-tooltip { display: none; }
-            h2 { font-size: 26px; }
-            .sec-desc { font-size: 15px; margin-bottom: 36px; }
-            /* Extra-small mobile adjustments */
-            .page-hero h1 { font-size: clamp(24px, 5vw, 30px); }
-            .page-hero p { font-size: 14px; }
             h2 { font-size: clamp(20px, 4vw, 24px); }
-            .sec-desc { font-size: 14px; }
+            .sec-desc { font-size: 14px; margin-bottom: 36px; }
             .seo-intro p { font-size: 14px; }
             .resource-category-card { padding: 28px 20px; }
             .category-icon { width: 56px; height: 56px; }
@@ -806,7 +873,7 @@
     
     <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
     
-    <!-- NAVIGATION - FIXED FOR GITHUB -->
+    <!-- NAVIGATION -->
     <nav class="nav" id="navbar" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="index.html" class="logo" aria-label="Tutor Malek Home">
@@ -826,7 +893,7 @@
                     <i data-lucide="book-open"></i>
                     Subjects & Pricing
                 </a></li>
-                <li><a href="resources.html" class="active">
+                <li><a href="resources.html" class="active" aria-current="page">
                     <i data-lucide="folder-open"></i>
                     Resources
                 </a></li>
@@ -836,7 +903,7 @@
                 </a></li>
             </ul>
             <div class="nav-cta">
-                <a href="https://wa.me/923379244731" class="btn btn-whatsapp" rel="noopener">
+                <a href="https://wa.me/923379244731" class="btn btn-whatsapp" rel="noopener noreferrer" aria-label="Book now via WhatsApp">
                     <i data-lucide="message-circle"></i>
                     Book Now
                 </a>
@@ -847,7 +914,7 @@
         </div>
     </nav>
     
-    <!-- MOBILE MENU - FIXED FOR GITHUB -->
+    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
         <a href="index.html">
             <i data-lucide="home"></i>
@@ -870,7 +937,7 @@
             Contact
         </a>
         <div class="mobile-cta">
-            <a href="https://wa.me/923379244731" class="btn btn-whatsapp" rel="noopener">
+            <a href="https://wa.me/923379244731" class="btn btn-whatsapp" rel="noopener noreferrer">
                 <i data-lucide="message-circle"></i>
                 Book via WhatsApp
             </a>
@@ -1039,13 +1106,13 @@
             </div>
         </section>
 
-        <!-- CTA - FIXED BUTTON -->
+        <!-- CTA -->
         <section>
             <div class="container">
                 <div class="cta-box">
                     <h2>Need extra help beyond the resources?</h2>
                     <p>Book a 1-to-1 online lesson with me. I'll create a personalised learning plan that works alongside these free materials for maximum progress.</p>
-                    <a href="https://wa.me/923379244731" class="btn btn-xl" rel="noopener" style="display: inline-flex;">
+                    <a href="https://wa.me/923379244731" class="btn btn-xl" rel="noopener noreferrer" style="display: inline-flex;">
                         <i data-lucide="message-circle"></i>
                         Message on WhatsApp
                     </a>
@@ -1054,7 +1121,7 @@
         </section>
     </main>
 
-    <!-- FOOTER - FIXED FOR GITHUB -->
+    <!-- FOOTER -->
     <footer role="contentinfo">
         <div class="container">
             <div class="footer-grid">
@@ -1095,16 +1162,20 @@
     </footer>
 
     <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/923379244731" class="wa-float" aria-label="Chat on WhatsApp" rel="noopener">
+    <a href="https://wa.me/923379244731" class="wa-float" aria-label="Chat on WhatsApp" rel="noopener noreferrer">
         <i data-lucide="message-circle"></i>
         <span class="wa-tooltip">Chat on WhatsApp</span>
     </a>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Initialize Lucide icons after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
 
-        // Mobile menu functionality (Fixed)
+        // Mobile menu functionality (optimized)
         (function() {
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1147,11 +1218,11 @@
                 if (e.key === 'Escape' && isMenuOpen) closeMenu();
             });
 
+            // Passive scroll listener for performance
             window.addEventListener('scroll', () => {
                 nav.classList.toggle('scrolled', window.pageYOffset > 50);
             }, { passive: true });
 
-            // Fixes menu closing on window resize
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 900 && isMenuOpen) {
                     closeMenu();

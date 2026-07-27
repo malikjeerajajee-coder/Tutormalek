@@ -429,6 +429,12 @@
             gap: 48px;
             align-items: center;
         }
+        /* On mobile, stack and center text */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         .badge {
             display: inline-flex;
             align-items: center;
@@ -470,57 +476,6 @@
             gap: 12px;
             flex-wrap: wrap;
         }
-        
-        /* Hero Card */
-        .hero-card {
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: var(--r3);
-            padding: 24px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.03);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .hero-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-        }
-        .hero-card-top {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border2);
-        }
-        .avatar {
-            width: 44px;
-            height: 44px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: 800;
-            font-size: 17px;
-        }
-        .card-name { font-weight: 700; font-size: 15px; }
-        .card-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
-        .stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .stat {
-            background: var(--bg2);
-            border-radius: var(--r);
-            padding: 14px;
-            text-align: center;
-            transition: background 0.2s;
-        }
-        .stat:hover { background: #eee; }
-        .stat-val { font-size: 19px; font-weight: 800; }
-        .stat-lbl { font-size: 10px; color: var(--text3); margin-top: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 
         /* SECTIONS */
         section { padding: 56px 0; }
@@ -1001,7 +956,6 @@
             .hero { padding: 90px 0 44px; text-align: center; }
             .hero p { margin-left: auto; margin-right: auto; }
             .hero-actions { justify-content: center; }
-            .hero-card { max-width: 380px; margin: 0 auto; }
             .trust-items { grid-template-columns: repeat(2,1fr); gap: 14px; }
             .steps, .testimonials, .pricing { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
             .subjects-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
@@ -1136,21 +1090,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="hero-card" aria-label="Tutor statistics">
-                        <div class="hero-card-top">
-                            <div class="avatar" aria-hidden="true">M</div>
-                            <div>
-                                <div class="card-name">Tutor Malek</div>
-                                <div class="card-sub">Online Private Tutor • UK-Wide</div>
-                            </div>
-                        </div>
-                        <div class="stats">
-                            <div class="stat"><div class="stat-val">500+</div><div class="stat-lbl">Students</div></div>
-                            <div class="stat"><div class="stat-val">5+</div><div class="stat-lbl">Years Exp.</div></div>
-                            <div class="stat"><div class="stat-val">5.0 ★</div><div class="stat-lbl">127+ Reviews</div></div>
-                            <div class="stat"><div class="stat-val">GCSE–A2</div><div class="stat-lbl">All Levels</div></div>
-                        </div>
-                    </div>
+                    <!-- Right column intentionally left empty to remove card -->
+                    <div></div>
                 </div>
             </div>
         </section>
@@ -1520,7 +1461,6 @@
                 hamburger.setAttribute('aria-label', 'Open menu');
                 body.classList.remove('menu-open');
                 menuOverlay.setAttribute('aria-hidden', 'true');
-                // Return focus to hamburger
                 hamburger.focus();
             }
 
@@ -1535,12 +1475,10 @@
                 if (e.key === 'Escape' && isMenuOpen) closeMenu();
             });
 
-            // Passive scroll listener for nav shadow
             window.addEventListener('scroll', () => {
                 nav.classList.toggle('scrolled', window.pageYOffset > 50);
             }, { passive: true });
 
-            // Close menu on resize if desktop breakpoint reached
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 900 && isMenuOpen) {
                     closeMenu();
